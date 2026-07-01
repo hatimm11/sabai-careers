@@ -323,12 +323,10 @@ export default function App() {
     try {
       const langs = (typeof navigator !== "undefined" && (navigator.languages || [navigator.language])) || [];
       for (const l of langs) {
-        const c = String(l).toLowerCase();
-        if (c.startsWith("th")) return "th";
-        if (c.startsWith("ar")) return "ar";
+        if (String(l).toLowerCase().startsWith("ar")) return "ar";
       }
     } catch (e) {}
-    return "en";
+    return "th"; // Thai-first: default to Thai for everyone (target audience)
   };
   const [lang, setLang] = useState(detectLang);
   const t = T[lang];
