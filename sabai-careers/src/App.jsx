@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   Shield, Star, Check, Sparkles, Phone,
   BadgeCheck, MessageCircle, TrendingUp, CalendarHeart,
-  HandHeart, GraduationCap, Plane, Send, Camera, X, Share2
+  HandHeart, GraduationCap, Plane, Send, Camera, X, Share2, Mail
 } from "lucide-react";
 
 /* ===== Contact / integrations ===== */
@@ -52,6 +52,9 @@ const CSS = `
 .fil span:last-child{ background:linear-gradient(270deg,transparent,var(--gold)); }
 .card{ background:#fff; border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow-sm); transition:transform .3s, box-shadow .3s, border-color .3s; }
 .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--gold-lt); }
+.openpill{ display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px; background:linear-gradient(135deg,#FFF4D6,#FDE7A9); color:#8A6D1B; font-weight:700; font-size:12.5px; border:1px solid rgba(180,140,20,.28); }
+.openpill .dot{ width:8px; height:8px; border-radius:50%; background:#E8A200; box-shadow:0 0 0 0 rgba(232,162,0,.6); animation:opulse 1.8s infinite; }
+@keyframes opulse{ 0%{ box-shadow:0 0 0 0 rgba(232,162,0,.55); } 70%{ box-shadow:0 0 0 8px rgba(232,162,0,0); } 100%{ box-shadow:0 0 0 0 rgba(232,162,0,0); } }
 .women{ display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px; background:var(--rose-soft); color:var(--magenta); font-weight:700; font-size:13px; }
 
 .nav{ position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); background:rgba(255,255,255,.55); border-bottom:1px solid var(--line); }
@@ -224,13 +227,13 @@ const T = {
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
     waTitle: "Prefer to chat now?", waSub: "Message our recruitment team directly on WhatsApp — we reply within 24 hours.", waBtn: "Chat on WhatsApp",
     ctaTitle: "Your craft deserves a premium home", ctaSub: "Join Sabai and build your career with a brand that values your skill.",
-    apply2: "Apply", applyNow: "Apply now", benefits: "Benefits", reqs: "Requirements", process: "Process",
-    earnTitle: "What you'll earn", earnAmount: "~2,500 SAR", earnSub: "/ month", earnPlus: "+ performance bonuses & seasonal rewards", earnBaht: "\u2248 \u0e3f21,750 / month",
+    apply2: "Apply", openUntil: "Applications open until Aug 10", applyNow: "Apply now", benefits: "Benefits", reqs: "Requirements", process: "Process",
+    earnTitle: "What you'll earn", earnAmount: "Up to 3,000 SAR", earnSub: "/ month", earnPlus: "+ performance bonuses & seasonal rewards", earnBaht: "\u2248 \u0e3f26,100 / month",
     covers: ["Housing provided", "Flights provided", "1 paid day off / week", "1-year contract \u00b7 licensed sponsorship"],
     safeEy: "Real & licensed", safeTitle: "Safe, legal, and real",
     safe: ["Licensed to operate in Saudi Arabia \u2014 License No. " + LICENSE, "Female clients only \u2014 every booking verified & tracked", "A formal contract with clear, protected rights", "A coordinator helps you settle in on arrival"],
     faqEy: "FAQ", faqTitle: "Questions Thai therapists ask",
-    faq: [{ q: "How much will I earn?", a: "Around 2,500 SAR per month, plus performance bonuses and seasonal rewards." }, { q: "Is it safe?", a: "Yes \u2014 female clients only, every booking verified and tracked, with a coordinator supporting you." }, { q: "What's covered?", a: "Housing and flights are provided, with one paid day off every week." }, { q: "How long is the contract?", a: "Annual." }],
+    faq: [{ q: "How much will I earn?", a: "Up to 3,000 SAR per month, plus performance bonuses and seasonal rewards." }, { q: "Is it safe?", a: "Yes \u2014 female clients only, every booking verified and tracked, with a coordinator supporting you." }, { q: "What's covered?", a: "Housing and flights are provided, with one paid day off every week." }, { q: "How long is the contract?", a: "Annual." }],
     share: "Share with a friend", shareMsg: "Sabai is hiring female Thai-massage therapists in Saudi Arabia \u2014 housing & flights provided. Take a look:",
     footRights: "© 2026 Sabai · ساباي — Premium women's home wellness, Saudi Arabia.",
   },
@@ -261,13 +264,13 @@ const T = {
     cities: ["الرياض", "جدة", "الدمام", "المدينة المنورة", "الخبر", "أي مدينة"],
     waTitle: "تفضّلين المحادثة الآن؟", waSub: "راسلي فريق التوظيف مباشرة على واتساب — نردّ خلال ٢٤ ساعة.", waBtn: "محادثة واتساب",
     ctaTitle: "مهارتكِ تستحقّ بيتًا فاخرًا", ctaSub: "انضمّي إلى ساباي وابنِي مستقبلكِ مع علامة تقدّر مهارتكِ.",
-    apply2: "التقديم", applyNow: "قدّمي الآن", benefits: "المزايا", reqs: "المعايير", process: "الخطوات",
-    earnTitle: "\u0643\u0645 \u0633\u062a\u0643\u0633\u0628\u064a\u0646", earnAmount: "~\u0662\u066c\u0665\u0660\u0660 \u0631\u064a\u0627\u0644", earnSub: "/ \u0634\u0647\u0631\u064a\u0627\u064b", earnPlus: "+ \u062d\u0648\u0627\u0641\u0632 \u0623\u062f\u0627\u0621 \u0648\u0645\u0643\u0627\u0641\u0622\u062a \u0645\u0648\u0633\u0645\u064a\u0629", earnBaht: "\u2248 \u0e3f21,750 \u0628\u0627\u062e\u062a / \u0634\u0647\u0631\u064a\u0627\u064b",
+    apply2: "التقديم", openUntil: "التقديم مفتوح حتى ١٠ أغسطس", applyNow: "قدّمي الآن", benefits: "المزايا", reqs: "المعايير", process: "الخطوات",
+    earnTitle: "\u0643\u0645 \u0633\u062a\u0643\u0633\u0628\u064a\u0646", earnAmount: "\u064a\u0635\u0644 \u0625\u0644\u0649 \u0663\u066c\u0660\u0660\u0660 \u0631\u064a\u0627\u0644", earnSub: "/ \u0634\u0647\u0631\u064a\u0627\u064b", earnPlus: "+ \u062d\u0648\u0627\u0641\u0632 \u0623\u062f\u0627\u0621 \u0648\u0645\u0643\u0627\u0641\u0622\u062a \u0645\u0648\u0633\u0645\u064a\u0629", earnBaht: "\u2248 \u0e3f26,100 \u0628\u0627\u062e\u062a / \u0634\u0647\u0631\u064a\u0627\u064b",
     covers: ["\u0633\u0643\u0646 \u0645\u0624\u0645\u0651\u0646", "\u062a\u0630\u0627\u0643\u0631 \u0637\u064a\u0631\u0627\u0646", "\u064a\u0648\u0645 \u0625\u062c\u0627\u0632\u0629 \u0645\u062f\u0641\u0648\u0639 / \u0623\u0633\u0628\u0648\u0639\u064a\u0627\u064b", "\u0639\u0642\u062f \u0633\u0646\u0629 \u00b7 \u0643\u0641\u0627\u0644\u0629 \u0646\u0638\u0627\u0645\u064a\u0629"],
     safeEy: "\u0646\u0638\u0627\u0645\u064a \u0648\u0645\u0648\u062b\u0651\u0642", safeTitle: "\u0622\u0645\u0646 \u0648\u0646\u0638\u0627\u0645\u064a \u0648\u062d\u0642\u064a\u0642\u064a",
     safe: ["\u0645\u0631\u062e\u0651\u0635\u0629 \u0644\u0644\u0639\u0645\u0644 \u0641\u064a \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629 \u2014 \u0631\u0642\u0645 \u0627\u0644\u062a\u0631\u062e\u064a\u0635 " + LICENSE, "\u0639\u0645\u064a\u0644\u0627\u062a \u0633\u064a\u062f\u0627\u062a \u0641\u0642\u0637 \u2014 \u0643\u0644 \u062d\u062c\u0632 \u0645\u0648\u062b\u0651\u0642 \u0648\u0645\u064f\u062a\u062a\u0628\u0651\u0639", "\u0639\u0642\u062f \u0631\u0633\u0645\u064a \u0628\u062d\u0642\u0648\u0642 \u0648\u0627\u0636\u062d\u0629 \u0648\u0645\u062d\u0641\u0648\u0638\u0629", "\u0645\u0646\u0633\u0651\u0642\u0629 \u062a\u0633\u0627\u0639\u062f\u0643\u0650 \u0639\u0644\u0649 \u0627\u0644\u0627\u0633\u062a\u0642\u0631\u0627\u0631 \u0639\u0646\u062f \u0648\u0635\u0648\u0644\u0643\u0650"],
     faqEy: "\u0623\u0633\u0626\u0644\u0629 \u0634\u0627\u0626\u0639\u0629", faqTitle: "\u0623\u0633\u0626\u0644\u0629 \u062a\u0647\u0645\u0651 \u0627\u0644\u0645\u0639\u0627\u0644\u0650\u062c\u0629",
-    faq: [{ q: "\u0643\u0645 \u0633\u0623\u0643\u0633\u0628\u061f", a: "\u062d\u0648\u0627\u0644\u064a \u0662\u066c\u0665\u0660\u0660 \u0631\u064a\u0627\u0644 \u0634\u0647\u0631\u064a\u0627\u064b\u060c \u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u062d\u0648\u0627\u0641\u0632 \u0627\u0644\u0623\u062f\u0627\u0621 \u0648\u0627\u0644\u0645\u0643\u0627\u0641\u0622\u062a \u0627\u0644\u0645\u0648\u0633\u0645\u064a\u0629." }, { q: "\u0647\u0644 \u0627\u0644\u0639\u0645\u0644 \u0622\u0645\u0646\u061f", a: "\u0646\u0639\u0645 \u2014 \u0639\u0645\u064a\u0644\u0627\u062a \u0633\u064a\u062f\u0627\u062a \u0641\u0642\u0637\u060c \u0648\u0643\u0644 \u062d\u062c\u0632 \u0645\u0648\u062b\u0651\u0642 \u0648\u0645\u064f\u062a\u062a\u0628\u0651\u0639\u060c \u0645\u0639 \u0645\u0646\u0633\u0651\u0642\u0629 \u062a\u062f\u0639\u0645\u0643\u0650." }, { q: "\u0645\u0627\u0630\u0627 \u064a\u0634\u0645\u0644\u061f", a: "\u0633\u0643\u0646 \u0648\u062a\u0630\u0627\u0643\u0631 \u0637\u064a\u0631\u0627\u0646 \u0645\u0624\u0645\u0651\u0646\u0629\u060c \u0645\u0639 \u064a\u0648\u0645 \u0625\u062c\u0627\u0632\u0629 \u0645\u062f\u0641\u0648\u0639 \u0643\u0644 \u0623\u0633\u0628\u0648\u0639." }, { q: "\u0643\u0645 \u0645\u062f\u0629 \u0627\u0644\u0639\u0642\u062f\u061f", a: "\u0633\u0646\u0648\u064a." }],
+    faq: [{ q: "\u0643\u0645 \u0633\u0623\u0643\u0633\u0628\u061f", a: "\u064a\u0635\u0644 \u0625\u0644\u0649 \u0663\u066c\u0660\u0660\u0660 \u0631\u064a\u0627\u0644 \u0634\u0647\u0631\u064a\u0627\u064b\u060c \u0625\u0636\u0627\u0641\u0629 \u0625\u0644\u0649 \u062d\u0648\u0627\u0641\u0632 \u0627\u0644\u0623\u062f\u0627\u0621 \u0648\u0627\u0644\u0645\u0643\u0627\u0641\u0622\u062a \u0627\u0644\u0645\u0648\u0633\u0645\u064a\u0629." }, { q: "\u0647\u0644 \u0627\u0644\u0639\u0645\u0644 \u0622\u0645\u0646\u061f", a: "\u0646\u0639\u0645 \u2014 \u0639\u0645\u064a\u0644\u0627\u062a \u0633\u064a\u062f\u0627\u062a \u0641\u0642\u0637\u060c \u0648\u0643\u0644 \u062d\u062c\u0632 \u0645\u0648\u062b\u0651\u0642 \u0648\u0645\u064f\u062a\u062a\u0628\u0651\u0639\u060c \u0645\u0639 \u0645\u0646\u0633\u0651\u0642\u0629 \u062a\u062f\u0639\u0645\u0643\u0650." }, { q: "\u0645\u0627\u0630\u0627 \u064a\u0634\u0645\u0644\u061f", a: "\u0633\u0643\u0646 \u0648\u062a\u0630\u0627\u0643\u0631 \u0637\u064a\u0631\u0627\u0646 \u0645\u0624\u0645\u0651\u0646\u0629\u060c \u0645\u0639 \u064a\u0648\u0645 \u0625\u062c\u0627\u0632\u0629 \u0645\u062f\u0641\u0648\u0639 \u0643\u0644 \u0623\u0633\u0628\u0648\u0639." }, { q: "\u0643\u0645 \u0645\u062f\u0629 \u0627\u0644\u0639\u0642\u062f\u061f", a: "\u0633\u0646\u0648\u064a." }],
     share: "\u0634\u0627\u0631\u0643\u064a \u0627\u0644\u0639\u0631\u0636 \u0645\u0639 \u0635\u062f\u064a\u0642\u0629", shareMsg: "\u0633\u0627\u0628\u0627\u064a \u062a\u0648\u0638\u0651\u0641 \u0645\u0639\u0627\u0644\u0650\u062c\u0627\u062a \u0645\u0633\u0627\u062c \u062a\u0627\u064a\u0644\u0646\u062f\u064a \u0641\u064a \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629 \u2014 \u0633\u0643\u0646 \u0648\u0637\u064a\u0631\u0627\u0646 \u0645\u0624\u0645\u0651\u0646. \u0634\u0648\u0641\u064a \u0627\u0644\u0625\u0639\u0644\u0627\u0646:",
     footRights: "© ٢٠٢٦ ساباي · Sabai — عناية منزلية فاخرة للسيدات، السعودية.",
   },
@@ -298,13 +301,13 @@ const T = {
     cities: ["ริยาด", "เจดดาห์", "ดัมมาม", "เมดินา", "โคบาร์", "เมืองใดก็ได้"],
     waTitle: "อยากแชทตอนนี้เลยไหม", waSub: "ทักทีมรับสมัครโดยตรงทาง WhatsApp — เราตอบกลับภายใน 24 ชั่วโมง", waBtn: "แชททาง WhatsApp",
     ctaTitle: "ฝีมือของคุณสมควรได้บ้านระดับพรีเมียม", ctaSub: "ร่วมงานกับซาบายและสร้างอาชีพกับแบรนด์ที่ให้คุณค่ากับทักษะของคุณ",
-    apply2: "สมัคร", applyNow: "สมัครเลย", benefits: "สวัสดิการ", reqs: "คุณสมบัติ", process: "ขั้นตอน",
-    earnTitle: "\u0e23\u0e32\u0e22\u0e44\u0e14\u0e49\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13", earnAmount: "~2,500 \u0e23\u0e34\u0e22\u0e32\u0e25", earnSub: "/ \u0e40\u0e14\u0e37\u0e2d\u0e19", earnPlus: "+ \u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e15\u0e32\u0e21\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e41\u0e25\u0e30\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e15\u0e32\u0e21\u0e40\u0e17\u0e28\u0e01\u0e32\u0e25", earnBaht: "\u2248 \u0e3f21,750 / \u0e40\u0e14\u0e37\u0e2d\u0e19",
+    apply2: "สมัคร", openUntil: "เปิดรับสมัครถึง 10 ส.ค.", applyNow: "สมัครเลย", benefits: "สวัสดิการ", reqs: "คุณสมบัติ", process: "ขั้นตอน",
+    earnTitle: "\u0e23\u0e32\u0e22\u0e44\u0e14\u0e49\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13", earnAmount: "\u0e2a\u0e39\u0e07\u0e2a\u0e38\u0e14 3,000 \u0e23\u0e34\u0e22\u0e32\u0e25", earnSub: "/ \u0e40\u0e14\u0e37\u0e2d\u0e19", earnPlus: "+ \u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e15\u0e32\u0e21\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e41\u0e25\u0e30\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e15\u0e32\u0e21\u0e40\u0e17\u0e28\u0e01\u0e32\u0e25", earnBaht: "\u2248 \u0e3f26,100 / \u0e40\u0e14\u0e37\u0e2d\u0e19",
     covers: ["\u0e17\u0e35\u0e48\u0e1e\u0e31\u0e01\u0e43\u0e2b\u0e49\u0e1f\u0e23\u0e35", "\u0e15\u0e31\u0e4b\u0e27\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e1a\u0e34\u0e19\u0e43\u0e2b\u0e49", "\u0e27\u0e31\u0e19\u0e2b\u0e22\u0e38\u0e14 1 \u0e27\u0e31\u0e19/\u0e2a\u0e31\u0e1b\u0e14\u0e32\u0e2b\u0e4c (\u0e21\u0e35\u0e04\u0e48\u0e32\u0e08\u0e49\u0e32\u0e07)", "\u0e2a\u0e31\u0e0d\u0e0d\u0e32 1 \u0e1b\u0e35 \u00b7 \u0e2a\u0e1b\u0e2d\u0e19\u0e40\u0e0b\u0e2d\u0e23\u0e4c\u0e16\u0e39\u0e01\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22"],
     safeEy: "\u0e16\u0e39\u0e01\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22\u0e41\u0e25\u0e30\u0e08\u0e23\u0e34\u0e07", safeTitle: "\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22 \u0e16\u0e39\u0e01\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22 \u0e41\u0e25\u0e30\u0e21\u0e35\u0e08\u0e23\u0e34\u0e07",
     safe: ["\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e43\u0e1a\u0e2d\u0e19\u0e38\u0e0d\u0e32\u0e15\u0e43\u0e19\u0e0b\u0e32\u0e2d\u0e38\u0e14\u0e35\u0e2d\u0e32\u0e23\u0e30\u0e40\u0e1a\u0e35\u0e22 \u2014 \u0e40\u0e25\u0e02\u0e17\u0e35\u0e48\u0e43\u0e1a\u0e2d\u0e19\u0e38\u0e0d\u0e32\u0e15 " + LICENSE, "\u0e25\u0e39\u0e01\u0e04\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e40\u0e17\u0e48\u0e32\u0e19\u0e31\u0e49\u0e19 \u2014 \u0e17\u0e38\u0e01\u0e01\u0e32\u0e23\u0e08\u0e2d\u0e07\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e22\u0e37\u0e19\u0e22\u0e31\u0e19\u0e41\u0e25\u0e30\u0e15\u0e34\u0e14\u0e15\u0e32\u0e21", "\u0e2a\u0e31\u0e0d\u0e0d\u0e32\u0e17\u0e35\u0e48\u0e40\u0e1b\u0e47\u0e19\u0e17\u0e32\u0e07\u0e01\u0e32\u0e23 \u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e17\u0e35\u0e48\u0e0a\u0e31\u0e14\u0e40\u0e08\u0e19\u0e41\u0e25\u0e30\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e04\u0e38\u0e49\u0e21\u0e04\u0e23\u0e2d\u0e07", "\u0e21\u0e35\u0e1c\u0e39\u0e49\u0e1b\u0e23\u0e30\u0e2a\u0e32\u0e19\u0e07\u0e32\u0e19\u0e0a\u0e48\u0e27\u0e22\u0e04\u0e38\u0e13\u0e1b\u0e23\u0e31\u0e1a\u0e15\u0e31\u0e27\u0e40\u0e21\u0e37\u0e48\u0e2d\u0e21\u0e32\u0e16\u0e36\u0e07"],
     faqEy: "\u0e04\u0e33\u0e16\u0e32\u0e21\u0e17\u0e35\u0e48\u0e1e\u0e1a\u0e1a\u0e48\u0e2d\u0e22", faqTitle: "\u0e04\u0e33\u0e16\u0e32\u0e21\u0e17\u0e35\u0e48\u0e19\u0e31\u0e01\u0e1a\u0e33\u0e1a\u0e31\u0e14\u0e0a\u0e32\u0e27\u0e44\u0e17\u0e22\u0e16\u0e32\u0e21\u0e1a\u0e48\u0e2d\u0e22",
-    faq: [{ q: "\u0e08\u0e30\u0e44\u0e14\u0e49\u0e23\u0e32\u0e22\u0e44\u0e14\u0e49\u0e40\u0e17\u0e48\u0e32\u0e44\u0e2b\u0e23\u0e48?", a: "\u0e1b\u0e23\u0e30\u0e21\u0e32\u0e13 2,500 \u0e23\u0e34\u0e22\u0e32\u0e25\u0e15\u0e48\u0e2d\u0e40\u0e14\u0e37\u0e2d\u0e19 (\u2248\u0e3f21,750) \u0e1a\u0e27\u0e01\u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e15\u0e32\u0e21\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e41\u0e25\u0e30\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e15\u0e32\u0e21\u0e40\u0e17\u0e28\u0e01\u0e32\u0e25" }, { q: "\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22\u0e44\u0e2b\u0e21?", a: "\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22 \u2014 \u0e25\u0e39\u0e01\u0e04\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e40\u0e17\u0e48\u0e32\u0e19\u0e31\u0e49\u0e19 \u0e17\u0e38\u0e01\u0e01\u0e32\u0e23\u0e08\u0e2d\u0e07\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e22\u0e37\u0e19\u0e22\u0e31\u0e19\u0e41\u0e25\u0e30\u0e15\u0e34\u0e14\u0e15\u0e32\u0e21 \u0e41\u0e25\u0e30\u0e21\u0e35\u0e1c\u0e39\u0e49\u0e1b\u0e23\u0e30\u0e2a\u0e32\u0e19\u0e07\u0e32\u0e19\u0e04\u0e2d\u0e22\u0e14\u0e39\u0e41\u0e25\u0e04\u0e38\u0e13" }, { q: "\u0e04\u0e23\u0e2d\u0e1a\u0e04\u0e25\u0e38\u0e21\u0e2d\u0e30\u0e44\u0e23\u0e1a\u0e49\u0e32\u0e07?", a: "\u0e21\u0e35\u0e17\u0e35\u0e48\u0e1e\u0e31\u0e01\u0e41\u0e25\u0e30\u0e15\u0e31\u0e4b\u0e27\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e1a\u0e34\u0e19\u0e43\u0e2b\u0e49 \u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e27\u0e31\u0e19\u0e2b\u0e22\u0e38\u0e14\u0e21\u0e35\u0e04\u0e48\u0e32\u0e08\u0e49\u0e32\u0e07 1 \u0e27\u0e31\u0e19\u0e17\u0e38\u0e01\u0e2a\u0e31\u0e1b\u0e14\u0e32\u0e2b\u0e4c" }, { q: "\u0e2a\u0e31\u0e0d\u0e0d\u0e32\u0e19\u0e32\u0e19\u0e40\u0e17\u0e48\u0e32\u0e44\u0e2b\u0e23\u0e48?", a: "\u0e23\u0e32\u0e22\u0e1b\u0e35" }],
+    faq: [{ q: "\u0e08\u0e30\u0e44\u0e14\u0e49\u0e23\u0e32\u0e22\u0e44\u0e14\u0e49\u0e40\u0e17\u0e48\u0e32\u0e44\u0e2b\u0e23\u0e48?", a: "\u0e2a\u0e39\u0e07\u0e2a\u0e38\u0e14 3,000 \u0e23\u0e34\u0e22\u0e32\u0e25\u0e15\u0e48\u0e2d\u0e40\u0e14\u0e37\u0e2d\u0e19 (\u2248\u0e3f26,100) \u0e1a\u0e27\u0e01\u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e15\u0e32\u0e21\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e41\u0e25\u0e30\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e15\u0e32\u0e21\u0e40\u0e17\u0e28\u0e01\u0e32\u0e25" }, { q: "\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22\u0e44\u0e2b\u0e21?", a: "\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22 \u2014 \u0e25\u0e39\u0e01\u0e04\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e40\u0e17\u0e48\u0e32\u0e19\u0e31\u0e49\u0e19 \u0e17\u0e38\u0e01\u0e01\u0e32\u0e23\u0e08\u0e2d\u0e07\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e22\u0e37\u0e19\u0e22\u0e31\u0e19\u0e41\u0e25\u0e30\u0e15\u0e34\u0e14\u0e15\u0e32\u0e21 \u0e41\u0e25\u0e30\u0e21\u0e35\u0e1c\u0e39\u0e49\u0e1b\u0e23\u0e30\u0e2a\u0e32\u0e19\u0e07\u0e32\u0e19\u0e04\u0e2d\u0e22\u0e14\u0e39\u0e41\u0e25\u0e04\u0e38\u0e13" }, { q: "\u0e04\u0e23\u0e2d\u0e1a\u0e04\u0e25\u0e38\u0e21\u0e2d\u0e30\u0e44\u0e23\u0e1a\u0e49\u0e32\u0e07?", a: "\u0e21\u0e35\u0e17\u0e35\u0e48\u0e1e\u0e31\u0e01\u0e41\u0e25\u0e30\u0e15\u0e31\u0e4b\u0e27\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e1a\u0e34\u0e19\u0e43\u0e2b\u0e49 \u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e27\u0e31\u0e19\u0e2b\u0e22\u0e38\u0e14\u0e21\u0e35\u0e04\u0e48\u0e32\u0e08\u0e49\u0e32\u0e07 1 \u0e27\u0e31\u0e19\u0e17\u0e38\u0e01\u0e2a\u0e31\u0e1b\u0e14\u0e32\u0e2b\u0e4c" }, { q: "\u0e2a\u0e31\u0e0d\u0e0d\u0e32\u0e19\u0e32\u0e19\u0e40\u0e17\u0e48\u0e32\u0e44\u0e2b\u0e23\u0e48?", a: "\u0e23\u0e32\u0e22\u0e1b\u0e35" }],
     share: "\u0e41\u0e0a\u0e23\u0e4c\u0e43\u0e2b\u0e49\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e19", shareMsg: "Sabai \u0e01\u0e33\u0e25\u0e31\u0e07\u0e23\u0e31\u0e1a\u0e2a\u0e21\u0e31\u0e04\u0e23\u0e19\u0e31\u0e01\u0e19\u0e27\u0e14\u0e1a\u0e33\u0e1a\u0e31\u0e14\u0e2b\u0e0d\u0e34\u0e07\u0e43\u0e19\u0e0b\u0e32\u0e2d\u0e38\u0e14\u0e35\u0e2d\u0e32\u0e23\u0e30\u0e40\u0e1a\u0e35\u0e22 \u2014 \u0e21\u0e35\u0e17\u0e35\u0e48\u0e1e\u0e31\u0e01\u0e41\u0e25\u0e30\u0e15\u0e31\u0e4b\u0e27\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e1a\u0e34\u0e19\u0e43\u0e2b\u0e49 \u0e14\u0e39\u0e1b\u0e23\u0e30\u0e01\u0e32\u0e28:",
     footRights: "© 2026 Sabai · ساباي — ดูแลสุขภาพถึงบ้านระดับพรีเมียมสำหรับผู้หญิง ซาอุดีอาระเบีย",
   },
@@ -316,7 +319,18 @@ const HERO_IMG = "/hero.webp";
 
 export default function App() {
   const ref = useReveal();
-  const [lang, setLang] = useState("en");
+  const detectLang = () => {
+    try {
+      const langs = (typeof navigator !== "undefined" && (navigator.languages || [navigator.language])) || [];
+      for (const l of langs) {
+        const c = String(l).toLowerCase();
+        if (c.startsWith("th")) return "th";
+        if (c.startsWith("ar")) return "ar";
+      }
+    } catch (e) {}
+    return "en";
+  };
+  const [lang, setLang] = useState(detectLang);
   const t = T[lang];
   const ar = lang === "ar";
   const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] });
@@ -411,10 +425,11 @@ export default function App() {
   const bad = (k) => invalidFields.includes(k) ? { borderColor: "var(--magenta)", boxShadow: "0 0 0 2px rgba(194,91,126,.18)" } : null;
   const setF = (k, v) => { set(k, v); if (invalidFields.includes(k) && String(v).trim()) setInvalidFields((a) => a.filter((x) => x !== k)); };
   const share = async () => {
-    const url = (typeof window !== "undefined" && window.location && window.location.href) ? window.location.href : "https://sabai.pink";
-    const text = t.shareMsg + " " + url;
+    const url = "https://job.sabai.pink/";
+    const thaiMsg = T.th.shareMsg;               // always share in Thai (target audience)
+    const text = thaiMsg + " " + url;
     if (typeof navigator !== "undefined" && navigator.share) {
-      try { await navigator.share({ title: "Sabai Careers", text: t.shareMsg, url }); return; } catch (e) {}
+      try { await navigator.share({ title: "Sabai Careers", text: thaiMsg, url }); return; } catch (e) {}
     }
     window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
   };
@@ -441,7 +456,7 @@ export default function App() {
       <header className="hero">
         <div className="wrap hero-grid">
           <div>
-            <span className="women" style={{ marginBottom: 12 }}><Shield size={15} /> {t.womenOnly}</span>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}><span className="women"><Shield size={15} /> {t.womenOnly}</span><span className="openpill"><span className="dot" /> {t.openUntil}</span></div>
             <div className="eyebrow" style={{ marginTop: 4 }}>{t.hero.eyebrow}</div>
             <h1>{t.hero.h1a} <em>{t.hero.h1b}</em> {t.hero.h1c}</h1>
             <p className="lede" style={{ marginTop: 18 }}>{t.hero.sub}</p>
@@ -647,7 +662,12 @@ export default function App() {
             <div className="logo"><div className="mk" style={{ background: "rgba(255,255,255,.08)", borderColor: "rgba(255,255,255,.2)" }}><SabaiMark s={30} /></div><div className="nm" style={{ color: "#fff" }}>{ar ? "ساباي" : "Sabai"}</div></div>
             <a href="#apply" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>{t.applyNow}</a>
           </div>
-          <div className="ft-bottom">{t.footRights}</div>
+          <div className="ft-bottom">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 10, color: "rgba(255,255,255,.82)", fontSize: 14 }} dir="ltr">
+              <Mail size={15} /> <span style={{ userSelect: "text" }}>hello@sabai.sa</span>
+            </div>
+            {t.footRights}
+          </div>
         </div>
       </footer>
 
