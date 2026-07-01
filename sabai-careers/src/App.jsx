@@ -143,6 +143,7 @@ footer.ft{ background:#2E2438; color:#fff; padding:44px 0 24px; margin-top:20px;
 .fab{ position:fixed; inset-block-end:22px; inset-inline-end:22px; z-index:70; width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;
   background:linear-gradient(135deg,#25d366,#1faf55); box-shadow:0 14px 30px -10px rgba(31,175,85,.7); animation:wapulse 2.2s infinite; }
 @keyframes wapulse{ 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5); } 70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); } 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); } }
+.spec button.bad-chip{ border-color:var(--magenta)!important; box-shadow:0 0 0 2px rgba(194,91,126,.18); color:var(--magenta); }
 .platrow{ display:flex; gap:8px; flex-wrap:wrap; }
 .platbtn{ width:44px; height:44px; border-radius:12px; border:1.5px solid var(--line); background:#fff; display:grid; place-items:center; color:var(--ink-2); cursor:pointer; transition:all .15s ease; }
 .platbtn:hover{ border-color:var(--gold); color:var(--gold-dk); }
@@ -229,9 +230,9 @@ const T = {
     howTitle: "How to apply",
     how: [{ t: "Send your details", d: "Fill the short form or message us directly on WhatsApp." }, { t: "Quick interview", d: "A short video call to know your experience and specialties." }, { t: "Offer & relocation", d: "We arrange your contract, sponsorship and travel to the Kingdom." }],
     formTitle: "Start your application",
-    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["Beginner", "Intermediate", "Fluent"], age: "Age", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", username: "Username / handle", add: "Add" },
+    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["None", "Beginner", "Intermediate", "Fluent"], age: "Year of birth", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", socialsHint: "Add at least one account where you share your work \u2014 it helps us get to know you better.", username: "Username / handle", add: "Add", fieldsLeft: "fields left", allDone: "All set — ready to send!" },
     specs: ["Thai", "Swedish", "Deep Tissue", "Aromatherapy", "Hot Stone", "Reflexology"],
-    extraLabel: "Other skills (optional)", extras: ["Pedicure", "Manicure", "Body care", "Hair styling", "Makeup"],
+    extraLabel: "Other skills", extras: ["Massage only", "Pedicure", "Manicure", "Body care", "Hair styling", "Makeup"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
     waTitle: "Prefer to chat now?", waSub: "Message our recruitment team directly on WhatsApp — we reply within 24 hours.", waBtn: "Chat on WhatsApp",
     ctaTitle: "Your craft deserves a premium home", ctaSub: "Join Sabai and build your career with a brand that values your skill.",
@@ -266,9 +267,9 @@ const T = {
     howTitle: "كيف تقدّمين",
     how: [{ t: "أرسلي بياناتكِ", d: "املئي النموذج المختصر أو راسلينا مباشرة على واتساب." }, { t: "مقابلة سريعة", d: "مكالمة فيديو قصيرة للتعرّف على خبرتكِ وتخصّصاتكِ." }, { t: "العرض والانتقال", d: "نرتّب العقد والكفالة والسفر إلى المملكة." }],
     formTitle: "ابدئي طلبكِ",
-    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["مبتدئ", "متوسط", "بطلاقة"], age: "العمر", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", username: "المعرّف (اليوزر)", add: "إضافة" },
+    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["لا أجيدها", "مبتدئ", "متوسط", "بطلاقة"], age: "سنة الميلاد", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", socialsHint: "أضيفي حسابًا واحدًا على الأقل تعرضين فيه أعمالكِ — يساعدنا في التعرّف عليكِ بشكل أفضل.", username: "المعرّف (اليوزر)", add: "إضافة", fieldsLeft: "حقول باقية", allDone: "اكتملت البيانات — جاهز للإرسال!" },
     specs: ["تايلندي", "سويدي", "أنسجة عميقة", "روائح", "أحجار ساخنة", "انعكاسات"],
-    extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)", extras: ["\u0628\u0627\u062f\u064a\u0643\u064a\u0631", "\u0645\u0627\u0646\u064a\u0643\u064a\u0631", "\u0627\u0644\u0639\u0646\u0627\u064a\u0629 \u0628\u0627\u0644\u062c\u0633\u0645", "\u062a\u0635\u0641\u064a\u0641 \u0627\u0644\u0634\u0639\u0631", "\u0645\u0643\u064a\u0627\u062c"],
+    extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649", extras: ["\u0645\u0633\u0627\u062c \u0641\u0642\u0637", "\u0628\u0627\u062f\u064a\u0643\u064a\u0631", "\u0645\u0627\u0646\u064a\u0643\u064a\u0631", "\u0627\u0644\u0639\u0646\u0627\u064a\u0629 \u0628\u0627\u0644\u062c\u0633\u0645", "\u062a\u0635\u0641\u064a\u0641 \u0627\u0644\u0634\u0639\u0631", "\u0645\u0643\u064a\u0627\u062c"],
     cities: ["الرياض", "جدة", "الدمام", "المدينة المنورة", "الخبر", "أي مدينة"],
     waTitle: "تفضّلين المحادثة الآن؟", waSub: "راسلي فريق التوظيف مباشرة على واتساب — نردّ خلال ٢٤ ساعة.", waBtn: "محادثة واتساب",
     ctaTitle: "مهارتكِ تستحقّ بيتًا فاخرًا", ctaSub: "انضمّي إلى ساباي وابنِي مستقبلكِ مع علامة تقدّر مهارتكِ.",
@@ -303,10 +304,10 @@ const T = {
     howTitle: "วิธีสมัคร",
     how: [{ t: "ส่งข้อมูลของคุณ", d: "กรอกฟอร์มสั้นๆ หรือทักหาเราโดยตรงทาง WhatsApp" }, { t: "สัมภาษณ์สั้นๆ", d: "วิดีโอคอลสั้นๆ เพื่อทำความรู้จักประสบการณ์และความเชี่ยวชาญของคุณ" }, { t: "ข้อเสนอและการย้ายถิ่น", d: "เราจัดการสัญญา การสนับสนุนวีซ่า และการเดินทางมายังราชอาณาจักร" }],
     formTitle: "เริ่มการสมัครของคุณ",
-    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "อายุ", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", username: "ชื่อผู้ใช้", add: "เพิ่ม" },
+    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["ไม่ได้เลย", "เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "ปีเกิด", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", socialsHint: "เพิ่มอย่างน้อย 1 บัญชีที่คุณแชร์ผลงาน — ช่วยให้เรารู้จักคุณมากขึ้น", username: "ชื่อผู้ใช้", add: "เพิ่ม", fieldsLeft: "ช่องที่เหลือ", allDone: "ครบถ้วน — พร้อมส่ง!" },
     specs: ["นวดไทย", "สวีดิช", "เนื้อเยื่อลึก", "อโรมา", "หินร้อน", "กดจุดฝ่าเท้า"],
-    extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46 (\u0e44\u0e21\u0e48\u0e1a\u0e31\u0e07\u0e04\u0e31\u0e1a)", extras: ["\u0e40\u0e1e\u0e14\u0e34\u0e40\u0e04\u0e35\u0e22\u0e27", "\u0e17\u0e33\u0e40\u0e25\u0e47\u0e1a", "\u0e14\u0e39\u0e41\u0e25\u0e1c\u0e34\u0e27\u0e01\u0e32\u0e22", "\u0e08\u0e31\u0e14\u0e41\u0e15\u0e48\u0e07\u0e17\u0e23\u0e07\u0e1c\u0e21", "\u0e41\u0e15\u0e48\u0e07\u0e2b\u0e19\u0e49\u0e32"],
-    cities: ["ริยาด", "เจดดาห์", "ดัมมาม", "เมดินา", "โคบาร์", "เมืองใดก็ได้"],
+    extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46", extras: ["\u0e19\u0e27\u0e14\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e40\u0e14\u0e35\u0e22\u0e27", "\u0e40\u0e1e\u0e14\u0e34\u0e40\u0e04\u0e35\u0e22\u0e27", "\u0e17\u0e33\u0e40\u0e25\u0e47\u0e1a", "\u0e14\u0e39\u0e41\u0e25\u0e1c\u0e34\u0e27\u0e01\u0e32\u0e22", "\u0e08\u0e31\u0e14\u0e41\u0e15\u0e48\u0e07\u0e17\u0e23\u0e07\u0e1c\u0e21", "\u0e41\u0e15\u0e48\u0e07\u0e2b\u0e19\u0e49\u0e32"],
+    cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
     waTitle: "อยากแชทตอนนี้เลยไหม", waSub: "ทักทีมรับสมัครโดยตรงทาง WhatsApp — เราตอบกลับภายใน 24 ชั่วโมง", waBtn: "แชททาง WhatsApp",
     ctaTitle: "ฝีมือของคุณสมควรได้บ้านระดับพรีเมียม", ctaSub: "ร่วมงานกับซาบายและสร้างอาชีพกับแบรนด์ที่ให้คุณค่ากับทักษะของคุณ",
     apply2: "สมัคร", openUntil: "เปิดรับสมัครถึง 10 ส.ค.", applyNow: "สมัครเลย", benefits: "สวัสดิการ", reqs: "คุณสมบัติ", process: "ขั้นตอน",
@@ -356,7 +357,7 @@ export default function App() {
   const [lang, setLang] = useState(detectLang);
   const t = T[lang];
   const ar = lang === "ar";
-  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] });
+  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] });
   const [status, setStatus] = useState("idle");
   const [invalidFields, setInvalidFields] = useState([]);
   const [socialP, setSocialP] = useState("Instagram");
@@ -378,7 +379,7 @@ export default function App() {
       const img = new Image();
       img.onload = () => {
         try {
-          const MAX = 900;
+          const MAX = 760; // smaller for faster upload on weak networks
           let { width: w, height: h } = img;
           if (!w || !h) { clearTimeout(timer); return done(reader.result); }
           if (w > h && w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
@@ -386,7 +387,11 @@ export default function App() {
           const cv = document.createElement("canvas");
           cv.width = w; cv.height = h;
           cv.getContext("2d").drawImage(img, 0, 0, w, h);
-          const out = cv.toDataURL("image/jpeg", 0.82);
+          // adaptive quality: keep each photo well under ~250KB
+          let q = 0.72;
+          let out = cv.toDataURL("image/jpeg", q);
+          const CAP = 250 * 1024 * 1.37; // base64 overhead ≈ 37%
+          while (out.length > CAP && q > 0.4) { q -= 0.12; out = cv.toDataURL("image/jpeg", q); }
           clearTimeout(timer);
           done(out && out.length > 100 ? out : reader.result);
         } catch (err) { clearTimeout(timer); done(reader.result); }
@@ -420,7 +425,7 @@ export default function App() {
   const buildMsg = () => {
     const lines = [L.intro, "",
       `${L.name}: ${form.name || "-"}`, `${L.phone}: ${form.phone || "-"}`, `${L.nat}: ${form.nationality || "-"}`,
-      `${L.age}: ${form.age || "-"}`, `${L.height}: ${form.height || "-"}`, `${L.weight}: ${form.weight || "-"}`,
+      `${L.age}: ${form.birthYear || "-"}`, `${L.height}: ${form.height || "-"}`, `${L.weight}: ${form.weight || "-"}`,
       `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${L.arabicLabel}: ${form.arabic || "-"}`, `${L.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`,
       `${L.socials}: ${form.socials.map((s) => `${s.p}: ${s.u}`).join(" · ") || "-"}`];
     if (form.message) lines.push(`${L.msg}: ${form.message}`);
@@ -429,7 +434,7 @@ export default function App() {
   };
   const waHref = `https://wa.me/${WA_NUMBER}?text=${buildMsg()}`;
   const waPlain = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(L.intro)}`;
-  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.expPlace.trim() && form.arabic.trim() && form.english.trim() && form.age.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.city.trim() && form.socials.length;
+  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.arabic.trim() && form.english.trim() && form.birthYear.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.extras.length && form.city.trim() && form.socials.length;
   const submit = async () => {
     if (status === "sending") return;
     const missing = [];
@@ -439,10 +444,11 @@ export default function App() {
     if (!form.years.trim()) missing.push("years");
     if (!form.arabic.trim()) missing.push("arabic");
     if (!form.english.trim()) missing.push("english");
-    if (!form.age.trim()) missing.push("age");
+    if (!form.birthYear.trim()) missing.push("birthYear");
     if (!form.height.trim()) missing.push("height");
     if (!form.weight.trim()) missing.push("weight");
     if (!form.specs.length) missing.push("specs");
+    if (!form.extras.length) missing.push("extras");
     if (!form.city.trim()) missing.push("city");
     if (!form.socials.length) missing.push("socials");
     if (missing.length) { setInvalidFields(missing); setStatus("invalid"); return; }
@@ -451,7 +457,7 @@ export default function App() {
     setStatus("sending");
     try {
       await fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: form.age, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, lang }) });
+        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: (function(){ var y=parseInt(form.birthYear,10); var c=new Date().getFullYear(); return (y>1900 && y<=c) ? String(c-y) : ""; })(), birthYear: form.birthYear, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, lang }) });
       setStatus("sent");
     } catch (e) {
       window.open(waHref, "_blank");
@@ -598,7 +604,7 @@ export default function App() {
           <div className="apply">
             <div className="card form reveal">
               <div className="field"><label style={invalidFields.includes("name") ? { color: "var(--magenta)" } : null}>{L.name}</label><input value={form.name} onChange={(e) => setF("name", e.target.value)} placeholder={L.name} style={bad("name")} /></div>
-              <div className="field"><label style={invalidFields.includes("phone") ? { color: "var(--magenta)" } : null}>{L.phone}</label><input value={form.phone} onChange={(e) => setF("phone", e.target.value)} placeholder="+66 8X XXX XXXX" dir="ltr" inputMode="tel" style={bad("phone")} /></div>
+              <div className="field"><label style={invalidFields.includes("phone") ? { color: "var(--magenta)" } : null}>{L.phone}</label><input value={form.phone} onChange={(e) => setF("phone", e.target.value.replace(/[^0-9+ ]/g, ""))} placeholder="+66 8X XXX XXXX" dir="ltr" inputMode="tel" style={bad("phone")} /></div>
               <div style={{ display: "flex", gap: 12 }}>
                 <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("nationality") ? { color: "var(--magenta)" } : null}>{L.nat}</label><input value={form.nationality} onChange={(e) => setF("nationality", e.target.value)} style={bad("nationality")} /></div>
                 <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("years") ? { color: "var(--magenta)" } : null}>{L.years}</label><input value={form.years} onChange={(e) => setF("years", e.target.value)} inputMode="numeric" placeholder="5" style={bad("years")} /></div>
@@ -608,21 +614,22 @@ export default function App() {
                 <input value={form.expPlace} onChange={(e) => setF("expPlace", e.target.value)} placeholder={L.expPh} style={bad("expPlace")} />
                 <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "6px 2px 0" }}>{L.expHint}</p>
               </div>
-              <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{L.arabicLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={form.arabic === lv ? "on" : ""} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
-              <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{L.englishLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={form.english === lv ? "on" : ""} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{L.arabicLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={(form.arabic === lv ? "on" : "") + (invalidFields.includes("arabic") ? " bad-chip" : "")} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{L.englishLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={(form.english === lv ? "on" : "") + (invalidFields.includes("english") ? " bad-chip" : "")} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
               <div style={{ display: "flex", gap: 12 }}>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("age") ? { color: "var(--magenta)" } : null}>{L.age}</label><input value={form.age} onChange={(e) => setF("age", e.target.value)} inputMode="numeric" placeholder="28" style={bad("age")} /></div>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input value={form.height} onChange={(e) => setF("height", e.target.value)} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("weight") ? { color: "var(--magenta)" } : null}>{L.weight}</label><input value={form.weight} onChange={(e) => setF("weight", e.target.value)} inputMode="numeric" placeholder="60" style={bad("weight")} /></div>
+                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("birthYear") ? { color: "var(--magenta)" } : null}>{L.age}</label><input value={form.birthYear} onChange={(e) => setF("birthYear", e.target.value.replace(/[^0-9]/g, "").slice(0, 4))} inputMode="numeric" placeholder="1996" dir="ltr" style={bad("birthYear")} /></div>
+                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input value={form.height} onChange={(e) => setF("height", e.target.value.replace(/[^0-9]/g, "").slice(0, 3))} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
+                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("weight") ? { color: "var(--magenta)" } : null}>{L.weight}</label><input value={form.weight} onChange={(e) => setF("weight", e.target.value.replace(/[^0-9]/g, "").slice(0, 3))} inputMode="numeric" placeholder="60" style={bad("weight")} /></div>
               </div>
-              <div className="field"><label style={invalidFields.includes("specs") ? { color: "var(--magenta)" } : null}>{L.spec}</label><div className="spec">{t.specs.map((sp) => <button key={sp} type="button" className={form.specs.includes(sp) ? "on" : ""} onClick={() => { toggleSpec(sp); if (invalidFields.includes("specs")) setInvalidFields((a) => a.filter((x) => x !== "specs")); }}>{sp}</button>)}</div></div>
-              <div className="field"><label>{t.extraLabel}</label><div className="spec">{t.extras.map((x) => <button key={x} type="button" className={form.extras.includes(x) ? "on" : ""} onClick={() => toggleExtra(x)}>{x}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("specs") ? { color: "var(--magenta)" } : null}>{L.spec}</label><div className="spec">{t.specs.map((sp) => <button key={sp} type="button" className={(form.specs.includes(sp) ? "on" : "") + (invalidFields.includes("specs") ? " bad-chip" : "")} onClick={() => { toggleSpec(sp); if (invalidFields.includes("specs")) setInvalidFields((a) => a.filter((x) => x !== "specs")); }}>{sp}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("extras") ? { color: "var(--magenta)" } : null}>{t.extraLabel}</label><div className="spec">{t.extras.map((x) => <button key={x} type="button" className={(form.extras.includes(x) ? "on" : "") + (invalidFields.includes("extras") ? " bad-chip" : "")} onClick={() => { toggleExtra(x); if (invalidFields.includes("extras")) setInvalidFields((a) => a.filter((y) => y !== "extras")); }}>{x}</button>)}</div></div>
               <div className="field"><label style={invalidFields.includes("city") ? { color: "var(--magenta)" } : null}>{L.city}</label><select value={form.city} onChange={(e) => setF("city", e.target.value)} style={bad("city")}><option value="">{L.select}</option>{t.cities.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
               <div className="field">
                 <label style={invalidFields.includes("socials") ? { color: "var(--magenta)" } : null}>{L.socials}</label>
+                <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: "0 0 8px", lineHeight: 1.55 }}>{L.socialsHint}</p>
                 <div className="platrow">{PLATFORMS.map((p) => <button key={p} type="button" className={"platbtn" + (socialP === p ? " on" : "")} onClick={() => setSocialP(p)} aria-label={p} title={p}><PlatIcon name={p} /></button>)}</div>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                  <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130 }} />
+                  <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130, ...(bad("socials") || {}) }} />
                   <button type="button" className={"btn " + (socialU.trim() ? "btn-add-ready" : (form.socials.length ? "btn-add-more" : "btn-ghost"))} style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
                 </div>
                 {form.socials.length > 0 && (
@@ -662,12 +669,30 @@ export default function App() {
                   </div>
                   <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
                     <a className="btn btn-wa" style={{ color: "#fff", background: "linear-gradient(135deg,#25d366,#1faf55)" }} href={waHref} target="_blank" rel="noreferrer"><MessageCircle size={17} /> {t.waBtn}</a>
-                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] }); setStatus("idle"); }}>{L.another}</button>
+                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] }); setStatus("idle"); }}>{L.another}</button>
                     <button type="button" className="btn btn-ghost" onClick={share}><Share2 size={16} /> {t.share}</button>
                   </div>
                 </div>
               ) : (
                 <>
+                  {(() => {
+                    const reqVals = [form.name.trim(), form.phone.trim(), form.nationality.trim(), form.years.trim(), form.arabic.trim(), form.english.trim(), form.birthYear.trim(), form.height.trim(), form.weight.trim(), form.specs.length, form.extras.length, form.city.trim(), form.socials.length];
+                    const total = reqVals.length;
+                    const done = reqVals.filter(Boolean).length;
+                    const left = total - done;
+                    const pct = Math.round(done / total * 100);
+                    return (
+                      <div style={{ margin: "0 0 14px" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, fontSize: 13, fontWeight: 700, color: left ? "var(--ink-2)" : "var(--gold-dk)" }}>
+                          <span>{left ? `${left} ${L.fieldsLeft}` : L.allDone}</span>
+                          <span dir="ltr">{done}/{total}</span>
+                        </div>
+                        <div style={{ height: 8, borderRadius: 999, background: "var(--line)", overflow: "hidden" }}>
+                          <div style={{ height: "100%", width: pct + "%", borderRadius: 999, background: "linear-gradient(90deg,var(--gold-lt),var(--gold-dk))", transition: "width .3s ease" }} />
+                        </div>
+                      </div>
+                    );
+                  })()}
                   <p className="encourage-note" style={{ fontSize: 13.5, color: "var(--gold-dk)", background: "var(--gold-soft)", border: "1px solid var(--gold)", borderRadius: 12, padding: "12px 14px", margin: "0 0 14px", lineHeight: 1.6 }}>{L.encourage}</p>
                   <button type="button" className="btn btn-wa" style={{ width: "100%", color: "#fff", background: "linear-gradient(135deg,#25d366,#1faf55)", opacity: status === "sending" ? .8 : 1, pointerEvents: status === "sending" ? "none" : "auto" }} onClick={submit}>
                     {status === "sending" ? <><span className="spin" /> {L.sending}</> : <><Send size={17} /> {SHEET_ENDPOINT ? L.submit : L.waSend}</>}
