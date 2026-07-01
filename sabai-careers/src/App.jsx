@@ -143,14 +143,18 @@ footer.ft{ background:#2E2438; color:#fff; padding:44px 0 24px; margin-top:20px;
 .fab{ position:fixed; inset-block-end:22px; inset-inline-end:22px; z-index:70; width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;
   background:linear-gradient(135deg,#25d366,#1faf55); box-shadow:0 14px 30px -10px rgba(31,175,85,.7); animation:wapulse 2.2s infinite; }
 @keyframes wapulse{ 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5); } 70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); } 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); } }
-.btn-add-ready{ color:#fff !important; background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk)) !important; border-color:transparent !important; animation:addbounce 1s ease-in-out infinite; }
-.btn-add-more{ color:var(--gold-dk) !important; background:var(--gold-soft) !important; border-color:var(--gold) !important; animation:addbounce 1s ease-in-out infinite; }
-@keyframes addbounce{ 0%,100%{ transform:translateY(0) scale(1); box-shadow:0 6px 16px -8px rgba(92,122,76,.6); } 25%{ transform:translateY(-6px) scale(1.05); } 50%{ transform:translateY(0) scale(1); box-shadow:0 0 0 8px rgba(126,155,110,0); } 75%{ transform:translateY(-3px) scale(1.03); } }
+.platrow{ display:flex; gap:8px; flex-wrap:wrap; }
+.platbtn{ width:44px; height:44px; border-radius:12px; border:1.5px solid var(--line); background:#fff; display:grid; place-items:center; color:var(--ink-2); cursor:pointer; transition:all .15s ease; }
+.platbtn:hover{ border-color:var(--gold); color:var(--gold-dk); }
+.platbtn.on{ border-color:var(--gold); background:var(--gold-soft); color:var(--gold-dk); box-shadow:0 0 0 3px rgba(126,155,110,.15); }
+.btn-add-ready{ color:#fff !important; background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk)) !important; border-color:transparent !important; animation:addbounce 1.6s ease-in-out infinite; }
+.btn-add-more{ color:var(--gold-dk) !important; background:var(--gold-soft) !important; border-color:var(--gold) !important; animation:addbounce 1.6s ease-in-out infinite; }
+@keyframes addbounce{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-4px) scale(1.02); } }
 @keyframes addpulse{ 0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(126,155,110,.6); } 50%{ transform:scale(1.07); box-shadow:0 0 0 9px rgba(126,155,110,0); } }
 .spin{ width:17px;height:17px;border-radius:50%;border:2.5px solid rgba(255,255,255,.45);border-top-color:#fff; animation:sp .7s linear infinite; }
 @keyframes sp{ to{ transform:rotate(360deg); } }
 .reveal{ opacity:0; transform:translateY(20px); transition:.7s; } .reveal.in{ opacity:1; transform:none; }
-@media (prefers-reduced-motion: reduce){ .sb *{ animation:none!important; transition:none!important; } }
+@media (prefers-reduced-motion: reduce){ .sb *:not(.btn-add-ready):not(.btn-add-more){ animation:none!important; transition:none!important; } }
 :focus-visible{ outline:2.5px solid var(--gold); outline-offset:2px; border-radius:6px; }
 `;
 
@@ -225,7 +229,7 @@ const T = {
     howTitle: "How to apply",
     how: [{ t: "Send your details", d: "Fill the short form or message us directly on WhatsApp." }, { t: "Quick interview", d: "A short video call to know your experience and specialties." }, { t: "Offer & relocation", d: "We arrange your contract, sponsorship and travel to the Kingdom." }],
     formTitle: "Start your application",
-    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work?", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["Beginner", "Intermediate", "Fluent"], age: "Age", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", username: "Username / handle", add: "Add" },
+    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["Beginner", "Intermediate", "Fluent"], age: "Age", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", username: "Username / handle", add: "Add" },
     specs: ["Thai", "Swedish", "Deep Tissue", "Aromatherapy", "Hot Stone", "Reflexology"],
     extraLabel: "Other skills (optional)", extras: ["Pedicure", "Manicure", "Body care", "Hair styling", "Makeup"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
@@ -262,7 +266,7 @@ const T = {
     howTitle: "كيف تقدّمين",
     how: [{ t: "أرسلي بياناتكِ", d: "املئي النموذج المختصر أو راسلينا مباشرة على واتساب." }, { t: "مقابلة سريعة", d: "مكالمة فيديو قصيرة للتعرّف على خبرتكِ وتخصّصاتكِ." }, { t: "العرض والانتقال", d: "نرتّب العقد والكفالة والسفر إلى المملكة." }],
     formTitle: "ابدئي طلبكِ",
-    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["مبتدئ", "متوسط", "بطلاقة"], age: "العمر", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", username: "المعرّف (اليوزر)", add: "إضافة" },
+    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["مبتدئ", "متوسط", "بطلاقة"], age: "العمر", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", username: "المعرّف (اليوزر)", add: "إضافة" },
     specs: ["تايلندي", "سويدي", "أنسجة عميقة", "روائح", "أحجار ساخنة", "انعكاسات"],
     extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)", extras: ["\u0628\u0627\u062f\u064a\u0643\u064a\u0631", "\u0645\u0627\u0646\u064a\u0643\u064a\u0631", "\u0627\u0644\u0639\u0646\u0627\u064a\u0629 \u0628\u0627\u0644\u062c\u0633\u0645", "\u062a\u0635\u0641\u064a\u0641 \u0627\u0644\u0634\u0639\u0631", "\u0645\u0643\u064a\u0627\u062c"],
     cities: ["الرياض", "جدة", "الدمام", "المدينة المنورة", "الخبر", "أي مدينة"],
@@ -299,7 +303,7 @@ const T = {
     howTitle: "วิธีสมัคร",
     how: [{ t: "ส่งข้อมูลของคุณ", d: "กรอกฟอร์มสั้นๆ หรือทักหาเราโดยตรงทาง WhatsApp" }, { t: "สัมภาษณ์สั้นๆ", d: "วิดีโอคอลสั้นๆ เพื่อทำความรู้จักประสบการณ์และความเชี่ยวชาญของคุณ" }, { t: "ข้อเสนอและการย้ายถิ่น", d: "เราจัดการสัญญา การสนับสนุนวีซ่า และการเดินทางมายังราชอาณาจักร" }],
     formTitle: "เริ่มการสมัครของคุณ",
-    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน?", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "อายุ", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", username: "ชื่อผู้ใช้", add: "เพิ่ม" },
+    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "อายุ", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", username: "ชื่อผู้ใช้", add: "เพิ่ม" },
     specs: ["นวดไทย", "สวีดิช", "เนื้อเยื่อลึก", "อโรมา", "หินร้อน", "กดจุดฝ่าเท้า"],
     extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46 (\u0e44\u0e21\u0e48\u0e1a\u0e31\u0e07\u0e04\u0e31\u0e1a)", extras: ["\u0e40\u0e1e\u0e14\u0e34\u0e40\u0e04\u0e35\u0e22\u0e27", "\u0e17\u0e33\u0e40\u0e25\u0e47\u0e1a", "\u0e14\u0e39\u0e41\u0e25\u0e1c\u0e34\u0e27\u0e01\u0e32\u0e22", "\u0e08\u0e31\u0e14\u0e41\u0e15\u0e48\u0e07\u0e17\u0e23\u0e07\u0e1c\u0e21", "\u0e41\u0e15\u0e48\u0e07\u0e2b\u0e19\u0e49\u0e32"],
     cities: ["ริยาด", "เจดดาห์", "ดัมมาม", "เมดินา", "โคบาร์", "เมืองใดก็ได้"],
@@ -319,6 +323,23 @@ const T = {
 
 const LANGS = [["en", "EN"], ["ar", "عربي"], ["th", "ไทย"]];
 const PLATFORMS = ["Instagram", "TikTok", "Facebook", "Snapchat", "X"];
+const PlatIcon = ({ name, s = 20 }) => {
+  const p = { width: s, height: s, viewBox: "0 0 24 24", "aria-hidden": "true" };
+  switch (name) {
+    case "Instagram":
+      return (<svg {...p} fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none" /></svg>);
+    case "TikTok":
+      return (<svg {...p} fill="currentColor"><path d="M14.5 3c.3 2.4 1.9 4 4.3 4.2v2.9c-1.4.1-2.7-.3-4-1.1v5.7c0 3.1-2.5 5.6-5.6 5.3-2.6-.2-4.7-2.4-4.8-5C4.2 12.2 6.6 9.8 9.5 10c.3 0 .6 0 .9.1v3c-.3-.1-.6-.2-.9-.2a2.4 2.4 0 1 0 2.4 2.4V3h2.6Z" /></svg>);
+    case "Facebook":
+      return (<svg {...p} fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.6V13h2.7v8h3.2Z" /></svg>);
+    case "Snapchat":
+      return (<svg {...p} fill="currentColor"><path d="M12 2.3c2.4 0 4 1.8 4 4.1 0 .7 0 1.4-.1 1.9.2.1.5.2.8.1.4-.1.8.1.9.4.1.4-.1.7-.6.9-.4.1-1.1.3-1.2.7-.1.4.5 1.3 1.9 1.8.4.1.5.5.3.8-.4.6-1.7.6-1.9 1-.2.4.1 1-.5 1.1-.5.1-1.1-.3-1.9-.1-.7.2-1.3 1-2.5 1s-1.8-.8-2.5-1c-.8-.2-1.4.2-1.9.1-.6-.1-.3-.7-.5-1.1-.2-.4-1.5-.4-1.9-1-.2-.3-.1-.7.3-.8 1.4-.5 2-1.4 1.9-1.8-.1-.4-.8-.6-1.2-.7-.5-.2-.7-.5-.6-.9.1-.3.5-.5.9-.4.3.1.6 0 .8-.1-.1-.5-.1-1.2-.1-1.9 0-2.3 1.6-4.1 4-4.1Z" /></svg>);
+    case "X":
+      return (<svg {...p} fill="currentColor"><path d="M17.5 3h2.6l-5.7 6.5L21 21h-5.2l-4.1-5.4L6.9 21H4.3l6.1-7L3.4 3h5.3l3.7 4.9L17.5 3Zm-.9 16.4h1.4L7.5 4.5H6L16.6 19.4Z" /></svg>);
+    default:
+      return null;
+  }
+};
 const HERO_IMG = "/hero.webp";
 
 export default function App() {
@@ -416,7 +437,6 @@ export default function App() {
     if (!form.phone.trim()) missing.push("phone");
     if (!form.nationality.trim()) missing.push("nationality");
     if (!form.years.trim()) missing.push("years");
-    if (!form.expPlace.trim()) missing.push("expPlace");
     if (!form.arabic.trim()) missing.push("arabic");
     if (!form.english.trim()) missing.push("english");
     if (!form.age.trim()) missing.push("age");
@@ -600,8 +620,8 @@ export default function App() {
               <div className="field"><label style={invalidFields.includes("city") ? { color: "var(--magenta)" } : null}>{L.city}</label><select value={form.city} onChange={(e) => setF("city", e.target.value)} style={bad("city")}><option value="">{L.select}</option>{t.cities.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
               <div className="field">
                 <label style={invalidFields.includes("socials") ? { color: "var(--magenta)" } : null}>{L.socials}</label>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <select value={socialP} onChange={(e) => setSocialP(e.target.value)} style={{ flex: "0 0 130px" }}>{PLATFORMS.map((p) => <option key={p} value={p}>{p}</option>)}</select>
+                <div className="platrow">{PLATFORMS.map((p) => <button key={p} type="button" className={"platbtn" + (socialP === p ? " on" : "")} onClick={() => setSocialP(p)} aria-label={p} title={p}><PlatIcon name={p} /></button>)}</div>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
                   <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130 }} />
                   <button type="button" className={"btn " + (socialU.trim() ? "btn-add-ready" : (form.socials.length ? "btn-add-more" : "btn-ghost"))} style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
                 </div>
@@ -609,7 +629,7 @@ export default function App() {
                   <div className="spec" style={{ marginTop: 10 }}>
                     {form.socials.map((s, i) => (
                       <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 12px", borderRadius: 999, border: "1.5px solid var(--line)", background: "var(--gold-soft)", color: "var(--gold-dk)", fontWeight: 600, fontSize: 13 }}>
-                        <b style={{ fontWeight: 700 }}>{s.p}</b><span dir="ltr">@{s.u}</span>
+                        <PlatIcon name={s.p} s={16} /><span dir="ltr">@{s.u}</span>
                         <button type="button" onClick={() => removeSocial(i)} aria-label="remove" style={{ display: "grid", placeItems: "center", color: "var(--coral)" }}><X size={14} /></button>
                       </span>
                     ))}
@@ -648,6 +668,7 @@ export default function App() {
                 </div>
               ) : (
                 <>
+                  <p className="encourage-note" style={{ fontSize: 13.5, color: "var(--gold-dk)", background: "var(--gold-soft)", border: "1px solid var(--gold)", borderRadius: 12, padding: "12px 14px", margin: "0 0 14px", lineHeight: 1.6 }}>{L.encourage}</p>
                   <button type="button" className="btn btn-wa" style={{ width: "100%", color: "#fff", background: "linear-gradient(135deg,#25d366,#1faf55)", opacity: status === "sending" ? .8 : 1, pointerEvents: status === "sending" ? "none" : "auto" }} onClick={submit}>
                     {status === "sending" ? <><span className="spin" /> {L.sending}</> : <><Send size={17} /> {SHEET_ENDPOINT ? L.submit : L.waSend}</>}
                   </button>
