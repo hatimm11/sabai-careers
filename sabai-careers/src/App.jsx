@@ -143,6 +143,10 @@ footer.ft{ background:#2E2438; color:#fff; padding:44px 0 24px; margin-top:20px;
 .fab{ position:fixed; inset-block-end:22px; inset-inline-end:22px; z-index:70; width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;
   background:linear-gradient(135deg,#25d366,#1faf55); box-shadow:0 14px 30px -10px rgba(31,175,85,.7); animation:wapulse 2.2s infinite; }
 @keyframes wapulse{ 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5); } 70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); } 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); } }
+.btn-add-ready{ color:#fff !important; background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk)) !important; border-color:transparent !important; animation:addbounce 1s ease-in-out infinite; }
+.btn-add-more{ color:var(--gold-dk) !important; background:var(--gold-soft) !important; border-color:var(--gold) !important; animation:addbounce 1s ease-in-out infinite; }
+@keyframes addbounce{ 0%,100%{ transform:translateY(0) scale(1); box-shadow:0 6px 16px -8px rgba(92,122,76,.6); } 25%{ transform:translateY(-6px) scale(1.05); } 50%{ transform:translateY(0) scale(1); box-shadow:0 0 0 8px rgba(126,155,110,0); } 75%{ transform:translateY(-3px) scale(1.03); } }
+@keyframes addpulse{ 0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(126,155,110,.6); } 50%{ transform:scale(1.07); box-shadow:0 0 0 9px rgba(126,155,110,0); } }
 .spin{ width:17px;height:17px;border-radius:50%;border:2.5px solid rgba(255,255,255,.45);border-top-color:#fff; animation:sp .7s linear infinite; }
 @keyframes sp{ to{ transform:rotate(360deg); } }
 .reveal{ opacity:0; transform:translateY(20px); transition:.7s; } .reveal.in{ opacity:1; transform:none; }
@@ -599,7 +603,7 @@ export default function App() {
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   <select value={socialP} onChange={(e) => setSocialP(e.target.value)} style={{ flex: "0 0 130px" }}>{PLATFORMS.map((p) => <option key={p} value={p}>{p}</option>)}</select>
                   <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130 }} />
-                  <button type="button" className="btn btn-ghost" style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
+                  <button type="button" className={"btn " + (socialU.trim() ? "btn-add-ready" : (form.socials.length ? "btn-add-more" : "btn-ghost"))} style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
                 </div>
                 {form.socials.length > 0 && (
                   <div className="spec" style={{ marginTop: 10 }}>
