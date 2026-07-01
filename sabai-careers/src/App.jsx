@@ -119,7 +119,7 @@ const CSS = `
 .steps-card{ padding:20px; display:flex; gap:14px; align-items:flex-start; }
 .steps-card .num{ width:40px;height:40px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk)); }
 
-.apply{ display:grid; grid-template-columns:1fr 320px; gap:24px; align-items:start; }
+.apply{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start; max-width:640px; margin:0 auto; }
 @media(max-width:820px){ .apply{ grid-template-columns:1fr; } }
 .form{ padding:30px; }
 .field{ margin-bottom:14px; }
@@ -218,13 +218,13 @@ const T = {
     howTitle: "How to apply",
     how: [{ t: "Send your details", d: "Fill the short form or message us directly on WhatsApp." }, { t: "Quick interview", d: "A short video call to know your experience and specialties." }, { t: "Offer & relocation", d: "We arrange your contract, sponsorship and travel to the Kingdom." }],
     formTitle: "Start your application",
-    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work?", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", age: "Age", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", username: "Username / handle", add: "Add" },
+    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work?", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["Beginner", "Intermediate", "Fluent"], age: "Age", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", username: "Username / handle", add: "Add" },
     specs: ["Thai", "Swedish", "Deep Tissue", "Aromatherapy", "Hot Stone", "Reflexology"],
     extraLabel: "Other skills (optional)", extras: ["Pedicure", "Manicure", "Body care", "Hair styling", "Makeup"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
     waTitle: "Prefer to chat now?", waSub: "Message our recruitment team directly on WhatsApp — we reply within 24 hours.", waBtn: "Chat on WhatsApp",
     ctaTitle: "Your craft deserves a premium home", ctaSub: "Join Sabai and build your career with a brand that values your skill.",
-    apply2: "Apply", benefits: "Benefits", reqs: "Requirements", process: "Process",
+    apply2: "Apply", applyNow: "Apply now", benefits: "Benefits", reqs: "Requirements", process: "Process",
     earnTitle: "What you'll earn", earnAmount: "~2,500 SAR", earnSub: "/ month", earnPlus: "+ performance bonuses & seasonal rewards", earnBaht: "\u2248 \u0e3f21,750 / month",
     covers: ["Housing provided", "Flights provided", "1 paid day off / week", "1-year contract \u00b7 licensed sponsorship"],
     safeEy: "Real & licensed", safeTitle: "Safe, legal, and real",
@@ -255,13 +255,13 @@ const T = {
     howTitle: "كيف تقدّمين",
     how: [{ t: "أرسلي بياناتكِ", d: "املئي النموذج المختصر أو راسلينا مباشرة على واتساب." }, { t: "مقابلة سريعة", d: "مكالمة فيديو قصيرة للتعرّف على خبرتكِ وتخصّصاتكِ." }, { t: "العرض والانتقال", d: "نرتّب العقد والكفالة والسفر إلى المملكة." }],
     formTitle: "ابدئي طلبكِ",
-    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", age: "العمر", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", username: "المعرّف (اليوزر)", add: "إضافة" },
+    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["مبتدئ", "متوسط", "بطلاقة"], age: "العمر", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", username: "المعرّف (اليوزر)", add: "إضافة" },
     specs: ["تايلندي", "سويدي", "أنسجة عميقة", "روائح", "أحجار ساخنة", "انعكاسات"],
     extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)", extras: ["\u0628\u0627\u062f\u064a\u0643\u064a\u0631", "\u0645\u0627\u0646\u064a\u0643\u064a\u0631", "\u0627\u0644\u0639\u0646\u0627\u064a\u0629 \u0628\u0627\u0644\u062c\u0633\u0645", "\u062a\u0635\u0641\u064a\u0641 \u0627\u0644\u0634\u0639\u0631", "\u0645\u0643\u064a\u0627\u062c"],
     cities: ["الرياض", "جدة", "الدمام", "المدينة المنورة", "الخبر", "أي مدينة"],
     waTitle: "تفضّلين المحادثة الآن؟", waSub: "راسلي فريق التوظيف مباشرة على واتساب — نردّ خلال ٢٤ ساعة.", waBtn: "محادثة واتساب",
     ctaTitle: "مهارتكِ تستحقّ بيتًا فاخرًا", ctaSub: "انضمّي إلى ساباي وابنِي مستقبلكِ مع علامة تقدّر مهارتكِ.",
-    apply2: "التقديم", benefits: "المزايا", reqs: "المعايير", process: "الخطوات",
+    apply2: "التقديم", applyNow: "قدّمي الآن", benefits: "المزايا", reqs: "المعايير", process: "الخطوات",
     earnTitle: "\u0643\u0645 \u0633\u062a\u0643\u0633\u0628\u064a\u0646", earnAmount: "~\u0662\u066c\u0665\u0660\u0660 \u0631\u064a\u0627\u0644", earnSub: "/ \u0634\u0647\u0631\u064a\u0627\u064b", earnPlus: "+ \u062d\u0648\u0627\u0641\u0632 \u0623\u062f\u0627\u0621 \u0648\u0645\u0643\u0627\u0641\u0622\u062a \u0645\u0648\u0633\u0645\u064a\u0629", earnBaht: "\u2248 \u0e3f21,750 \u0628\u0627\u062e\u062a / \u0634\u0647\u0631\u064a\u0627\u064b",
     covers: ["\u0633\u0643\u0646 \u0645\u0624\u0645\u0651\u0646", "\u062a\u0630\u0627\u0643\u0631 \u0637\u064a\u0631\u0627\u0646", "\u064a\u0648\u0645 \u0625\u062c\u0627\u0632\u0629 \u0645\u062f\u0641\u0648\u0639 / \u0623\u0633\u0628\u0648\u0639\u064a\u0627\u064b", "\u0639\u0642\u062f \u0633\u0646\u0629 \u00b7 \u0643\u0641\u0627\u0644\u0629 \u0646\u0638\u0627\u0645\u064a\u0629"],
     safeEy: "\u0646\u0638\u0627\u0645\u064a \u0648\u0645\u0648\u062b\u0651\u0642", safeTitle: "\u0622\u0645\u0646 \u0648\u0646\u0638\u0627\u0645\u064a \u0648\u062d\u0642\u064a\u0642\u064a",
@@ -292,13 +292,13 @@ const T = {
     howTitle: "วิธีสมัคร",
     how: [{ t: "ส่งข้อมูลของคุณ", d: "กรอกฟอร์มสั้นๆ หรือทักหาเราโดยตรงทาง WhatsApp" }, { t: "สัมภาษณ์สั้นๆ", d: "วิดีโอคอลสั้นๆ เพื่อทำความรู้จักประสบการณ์และความเชี่ยวชาญของคุณ" }, { t: "ข้อเสนอและการย้ายถิ่น", d: "เราจัดการสัญญา การสนับสนุนวีซ่า และการเดินทางมายังราชอาณาจักร" }],
     formTitle: "เริ่มการสมัครของคุณ",
-    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน?", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", age: "อายุ", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", username: "ชื่อผู้ใช้", add: "เพิ่ม" },
+    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน?", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "อายุ", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", username: "ชื่อผู้ใช้", add: "เพิ่ม" },
     specs: ["นวดไทย", "สวีดิช", "เนื้อเยื่อลึก", "อโรมา", "หินร้อน", "กดจุดฝ่าเท้า"],
     extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46 (\u0e44\u0e21\u0e48\u0e1a\u0e31\u0e07\u0e04\u0e31\u0e1a)", extras: ["\u0e40\u0e1e\u0e14\u0e34\u0e40\u0e04\u0e35\u0e22\u0e27", "\u0e17\u0e33\u0e40\u0e25\u0e47\u0e1a", "\u0e14\u0e39\u0e41\u0e25\u0e1c\u0e34\u0e27\u0e01\u0e32\u0e22", "\u0e08\u0e31\u0e14\u0e41\u0e15\u0e48\u0e07\u0e17\u0e23\u0e07\u0e1c\u0e21", "\u0e41\u0e15\u0e48\u0e07\u0e2b\u0e19\u0e49\u0e32"],
     cities: ["ริยาด", "เจดดาห์", "ดัมมาม", "เมดินา", "โคบาร์", "เมืองใดก็ได้"],
     waTitle: "อยากแชทตอนนี้เลยไหม", waSub: "ทักทีมรับสมัครโดยตรงทาง WhatsApp — เราตอบกลับภายใน 24 ชั่วโมง", waBtn: "แชททาง WhatsApp",
     ctaTitle: "ฝีมือของคุณสมควรได้บ้านระดับพรีเมียม", ctaSub: "ร่วมงานกับซาบายและสร้างอาชีพกับแบรนด์ที่ให้คุณค่ากับทักษะของคุณ",
-    apply2: "สมัคร", benefits: "สวัสดิการ", reqs: "คุณสมบัติ", process: "ขั้นตอน",
+    apply2: "สมัคร", applyNow: "สมัครเลย", benefits: "สวัสดิการ", reqs: "คุณสมบัติ", process: "ขั้นตอน",
     earnTitle: "\u0e23\u0e32\u0e22\u0e44\u0e14\u0e49\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13", earnAmount: "~2,500 \u0e23\u0e34\u0e22\u0e32\u0e25", earnSub: "/ \u0e40\u0e14\u0e37\u0e2d\u0e19", earnPlus: "+ \u0e42\u0e1a\u0e19\u0e31\u0e2a\u0e15\u0e32\u0e21\u0e1c\u0e25\u0e07\u0e32\u0e19\u0e41\u0e25\u0e30\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e15\u0e32\u0e21\u0e40\u0e17\u0e28\u0e01\u0e32\u0e25", earnBaht: "\u2248 \u0e3f21,750 / \u0e40\u0e14\u0e37\u0e2d\u0e19",
     covers: ["\u0e17\u0e35\u0e48\u0e1e\u0e31\u0e01\u0e43\u0e2b\u0e49\u0e1f\u0e23\u0e35", "\u0e15\u0e31\u0e4b\u0e27\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e1a\u0e34\u0e19\u0e43\u0e2b\u0e49", "\u0e27\u0e31\u0e19\u0e2b\u0e22\u0e38\u0e14 1 \u0e27\u0e31\u0e19/\u0e2a\u0e31\u0e1b\u0e14\u0e32\u0e2b\u0e4c (\u0e21\u0e35\u0e04\u0e48\u0e32\u0e08\u0e49\u0e32\u0e07)", "\u0e2a\u0e31\u0e0d\u0e0d\u0e32 1 \u0e1b\u0e35 \u00b7 \u0e2a\u0e1b\u0e2d\u0e19\u0e40\u0e0b\u0e2d\u0e23\u0e4c\u0e16\u0e39\u0e01\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22"],
     safeEy: "\u0e16\u0e39\u0e01\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22\u0e41\u0e25\u0e30\u0e08\u0e23\u0e34\u0e07", safeTitle: "\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22 \u0e16\u0e39\u0e01\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22 \u0e41\u0e25\u0e30\u0e21\u0e35\u0e08\u0e23\u0e34\u0e07",
@@ -319,7 +319,7 @@ export default function App() {
   const [lang, setLang] = useState("en");
   const t = T[lang];
   const ar = lang === "ar";
-  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] });
+  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] });
   const [status, setStatus] = useState("idle");
   const [invalidFields, setInvalidFields] = useState([]);
   const [socialP, setSocialP] = useState("Instagram");
@@ -370,7 +370,7 @@ export default function App() {
     const lines = [L.intro, "",
       `${L.name}: ${form.name || "-"}`, `${L.phone}: ${form.phone || "-"}`, `${L.nat}: ${form.nationality || "-"}`,
       `${L.age}: ${form.age || "-"}`, `${L.height}: ${form.height || "-"}`, `${L.weight}: ${form.weight || "-"}`,
-      `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`,
+      `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${t.arabicLabel}: ${form.arabic || "-"}`, `${t.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`,
       `${L.socials}: ${form.socials.map((s) => `${s.p}: ${s.u}`).join(" · ") || "-"}`];
     if (form.message) lines.push(`${L.msg}: ${form.message}`);
     if (form.photos.length) lines.push(L.photoAttached + (form.photos.length > 1 ? " (" + form.photos.length + ")" : ""));
@@ -378,7 +378,7 @@ export default function App() {
   };
   const waHref = `https://wa.me/${WA_NUMBER}?text=${buildMsg()}`;
   const waPlain = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(L.intro)}`;
-  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.expPlace.trim() && form.age.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.city.trim() && form.socials.length;
+  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.expPlace.trim() && form.arabic.trim() && form.english.trim() && form.age.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.city.trim() && form.socials.length;
   const submit = async () => {
     if (status === "sending") return;
     const missing = [];
@@ -387,6 +387,8 @@ export default function App() {
     if (!form.nationality.trim()) missing.push("nationality");
     if (!form.years.trim()) missing.push("years");
     if (!form.expPlace.trim()) missing.push("expPlace");
+    if (!form.arabic.trim()) missing.push("arabic");
+    if (!form.english.trim()) missing.push("english");
     if (!form.age.trim()) missing.push("age");
     if (!form.height.trim()) missing.push("height");
     if (!form.weight.trim()) missing.push("weight");
@@ -399,7 +401,7 @@ export default function App() {
     setStatus("sending");
     try {
       await fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: form.age, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, lang }) });
+        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: form.age, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, lang }) });
       setStatus("sent");
     } catch (e) {
       window.open(waHref, "_blank");
@@ -430,7 +432,7 @@ export default function App() {
           </div>
           <div className="nav-act">
             <div className="langs">{LANGS.map(([c, l]) => <button key={c} className={lang === c ? "on" : ""} onClick={() => setLang(c)}>{l}</button>)}</div>
-            <a className="btn btn-wa desktop-cta" style={{ padding: "11px 20px" }} href={waPlain} target="_blank" rel="noreferrer"><MessageCircle size={16} /> {t.hero.apply}</a>
+            <a className="btn btn-gold desktop-cta" style={{ padding: "11px 20px" }} href="#apply">{t.applyNow}</a>
           </div>
         </div>
       </nav>
@@ -444,7 +446,7 @@ export default function App() {
             <h1>{t.hero.h1a} <em>{t.hero.h1b}</em> {t.hero.h1c}</h1>
             <p className="lede" style={{ marginTop: 18 }}>{t.hero.sub}</p>
             <div className="hero-cta">
-              <a className="btn btn-wa" href={waPlain} target="_blank" rel="noreferrer"><MessageCircle size={18} /> {t.hero.apply}</a>
+              <a className="btn btn-gold" href="#apply">{t.applyNow}</a>
               <a className="btn btn-ghost" href="#perks">{t.hero.learn}</a>
             </div>
             <div className="hero-mini">
@@ -555,6 +557,8 @@ export default function App() {
                 <input value={form.expPlace} onChange={(e) => setF("expPlace", e.target.value)} placeholder={L.expPh} style={bad("expPlace")} />
                 <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "6px 2px 0" }}>{L.expHint}</p>
               </div>
+              <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{t.arabicLabel}</label><div className="spec">{t.arabicLevels.map((lv) => <button key={lv} type="button" className={form.arabic === lv ? "on" : ""} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{t.englishLabel}</label><div className="spec">{t.arabicLevels.map((lv) => <button key={lv} type="button" className={form.english === lv ? "on" : ""} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
               <div style={{ display: "flex", gap: 12 }}>
                 <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("age") ? { color: "var(--magenta)" } : null}>{L.age}</label><input value={form.age} onChange={(e) => setF("age", e.target.value)} inputMode="numeric" placeholder="28" style={bad("age")} /></div>
                 <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input value={form.height} onChange={(e) => setF("height", e.target.value)} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
@@ -607,7 +611,7 @@ export default function App() {
                   </div>
                   <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
                     <a className="btn btn-wa" style={{ color: "#fff", background: "linear-gradient(135deg,#25d366,#1faf55)" }} href={waHref} target="_blank" rel="noreferrer"><MessageCircle size={17} /> {t.waBtn}</a>
-                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] }); setStatus("idle"); }}>{L.another}</button>
+                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", age: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] }); setStatus("idle"); }}>{L.another}</button>
                     <button type="button" className="btn btn-ghost" onClick={share}><Share2 size={16} /> {t.share}</button>
                   </div>
                 </div>
@@ -621,14 +625,6 @@ export default function App() {
               )}
             </div>
 
-            <div className="card wa-side reveal">
-              <div className="wa-ic"><MessageCircle size={32} /></div>
-              <h3 style={{ fontSize: 21 }}>{t.waTitle}</h3>
-              <p style={{ color: "var(--ink-2)", fontSize: 14.5, margin: "8px 0 16px" }}>{t.waSub}</p>
-              <a className="btn btn-wa" style={{ width: "100%" }} href={waPlain} target="_blank" rel="noreferrer"><MessageCircle size={18} /> {t.waBtn}</a>
-              <div style={{ marginTop: 14, fontSize: 13.5, color: "var(--ink-2)", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }} dir="ltr"><Phone size={15} /> +{WA_NUMBER}</div>
-              <div className="women" style={{ marginTop: 16 }}><Shield size={14} /> {t.womenOnly}</div>
-            </div>
           </div>
         </div>
       </section>
@@ -640,7 +636,7 @@ export default function App() {
             <Fil />
             <h2 className="title" style={{ marginTop: 16 }}>{t.ctaTitle}</h2>
             <p className="lede" style={{ margin: "10px auto 0", maxWidth: 520 }}>{t.ctaSub}</p>
-            <a className="btn btn-wa" style={{ marginTop: 22 }} href={waPlain} target="_blank" rel="noreferrer"><MessageCircle size={18} /> {t.hero.apply}</a>
+            <a className="btn btn-gold" style={{ marginTop: 22 }} href="#apply">{t.applyNow}</a>
           </div>
         </div>
       </section>
@@ -649,13 +645,12 @@ export default function App() {
         <div className="wrap">
           <div className="ft-top">
             <div className="logo"><div className="mk" style={{ background: "rgba(255,255,255,.08)", borderColor: "rgba(255,255,255,.2)" }}><SabaiMark s={30} /></div><div className="nm" style={{ color: "#fff" }}>{ar ? "ساباي" : "Sabai"}</div></div>
-            <a href={waPlain} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><MessageCircle size={15} /> {t.waBtn}</a>
+            <a href="#apply" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>{t.applyNow}</a>
           </div>
           <div className="ft-bottom">{t.footRights}</div>
         </div>
       </footer>
 
-      <a className="fab" href={waPlain} target="_blank" rel="noreferrer" aria-label="WhatsApp"><MessageCircle size={28} /></a>
     </div>
   );
 }
