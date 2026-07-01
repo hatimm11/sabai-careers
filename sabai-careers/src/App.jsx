@@ -370,7 +370,7 @@ export default function App() {
     const lines = [L.intro, "",
       `${L.name}: ${form.name || "-"}`, `${L.phone}: ${form.phone || "-"}`, `${L.nat}: ${form.nationality || "-"}`,
       `${L.age}: ${form.age || "-"}`, `${L.height}: ${form.height || "-"}`, `${L.weight}: ${form.weight || "-"}`,
-      `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${t.arabicLabel}: ${form.arabic || "-"}`, `${t.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`,
+      `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${L.arabicLabel}: ${form.arabic || "-"}`, `${L.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`,
       `${L.socials}: ${form.socials.map((s) => `${s.p}: ${s.u}`).join(" · ") || "-"}`];
     if (form.message) lines.push(`${L.msg}: ${form.message}`);
     if (form.photos.length) lines.push(L.photoAttached + (form.photos.length > 1 ? " (" + form.photos.length + ")" : ""));
@@ -557,8 +557,8 @@ export default function App() {
                 <input value={form.expPlace} onChange={(e) => setF("expPlace", e.target.value)} placeholder={L.expPh} style={bad("expPlace")} />
                 <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "6px 2px 0" }}>{L.expHint}</p>
               </div>
-              <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{t.arabicLabel}</label><div className="spec">{t.arabicLevels.map((lv) => <button key={lv} type="button" className={form.arabic === lv ? "on" : ""} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
-              <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{t.englishLabel}</label><div className="spec">{t.arabicLevels.map((lv) => <button key={lv} type="button" className={form.english === lv ? "on" : ""} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{L.arabicLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={form.arabic === lv ? "on" : ""} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
+              <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{L.englishLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={form.english === lv ? "on" : ""} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
               <div style={{ display: "flex", gap: 12 }}>
                 <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("age") ? { color: "var(--magenta)" } : null}>{L.age}</label><input value={form.age} onChange={(e) => setF("age", e.target.value)} inputMode="numeric" placeholder="28" style={bad("age")} /></div>
                 <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input value={form.height} onChange={(e) => setF("height", e.target.value)} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
