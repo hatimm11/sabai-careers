@@ -343,32 +343,46 @@ export default function App() {
   const toggleExtra = (s) => setForm((f) => ({ ...f, extras: f.extras.includes(s) ? f.extras.filter((x) => x !== s) : [...f.extras, s] }));
   const MAX_PHOTOS = 5;
   const compress = (file) => new Promise((resolve) => {
+    let settled = false;
+    const done = (v) => { if (!settled) { settled = true; resolve(v); } };
     const reader = new FileReader();
+    // safety net: never hang the upload on a stubborn image
+    const timer = setTimeout(() => done(reader.result || ""), 8000);
+    reader.onerror = () => { clearTimeout(timer); done(""); };
     reader.onload = () => {
       const img = new Image();
       img.onload = () => {
-        const MAX = 900;
-        let { width: w, height: h } = img;
-        if (w > h && w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
-        else if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; }
-        const cv = document.createElement("canvas");
-        cv.width = w; cv.height = h;
-        cv.getContext("2d").drawImage(img, 0, 0, w, h);
-        const out = cv.toDataURL("image/jpeg", 0.82);
-        resolve(out && out.length > 100 ? out : reader.result);
+        try {
+          const MAX = 900;
+          let { width: w, height: h } = img;
+          if (!w || !h) { clearTimeout(timer); return done(reader.result); }
+          if (w > h && w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+          else if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; }
+          const cv = document.createElement("canvas");
+          cv.width = w; cv.height = h;
+          cv.getContext("2d").drawImage(img, 0, 0, w, h);
+          const out = cv.toDataURL("image/jpeg", 0.82);
+          clearTimeout(timer);
+          done(out && out.length > 100 ? out : reader.result);
+        } catch (err) { clearTimeout(timer); done(reader.result); }
       };
-      img.onerror = () => resolve(reader.result);
+      img.onerror = () => { clearTimeout(timer); done(reader.result); };
       img.src = reader.result;
     };
     reader.readAsDataURL(file);
   });
   const onPhoto = async (e) => {
-    const files = Array.from(e.target.files || []).filter((f) => f.type.startsWith("image/"));
-    e.target.value = "";
-    if (!files.length) return;
+    const input = e.target;
+    const picked = Array.from(input.files || []);
+    // iOS/HEIC images often report an empty MIME type — accept those too
+    const files = picked.filter((f) => !f.type || f.type.startsWith("image/"));
+    if (!files.length) { input.value = ""; return; }
     const room = MAX_PHOTOS - form.photos.length;
     const out = [];
-    for (const file of files.slice(0, Math.max(0, room))) out.push(await compress(file));
+    for (const file of files.slice(0, Math.max(0, room))) {
+      try { const v = await compress(file); if (v) out.push(v); } catch (err) { /* skip a bad file */ }
+    }
+    input.value = "";
     if (out.length) setForm((f) => ({ ...f, photos: [...f.photos, ...out].slice(0, MAX_PHOTOS) }));
   };
   const removePhoto = (i) => setForm((f) => ({ ...f, photos: f.photos.filter((_, x) => x !== i) }));
