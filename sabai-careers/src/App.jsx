@@ -8,7 +8,7 @@ import {
 /* ===== Contact / integrations ===== */
 const WA_NUMBER = import.meta.env.VITE_WA_NUMBER || "966595552292";
 const LICENSE = import.meta.env.VITE_LICENSE || "4334299910";
-const SHEET_ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT || "https://script.google.com/macros/s/AKfycbzkx9gGTrrfLhkspAc-rl66eYNtAnS3ZpLAc3OqX8ZDPDZDEX1Y6_cEDXkW-2pbAKnEqQ/exec";
+const SHEET_ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT || "https://script.google.com/macros/s/AKfycbylpULjsq5J7FcLhIbeQe8nTKfYAkcmAPNwW7EmKr1KtPt98NcohdgBvErShst4rgG6/exec";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Mulish:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap');
