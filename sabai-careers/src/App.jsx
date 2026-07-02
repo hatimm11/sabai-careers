@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   Shield, Star, Check, Sparkles, Phone,
   BadgeCheck, MessageCircle, TrendingUp, CalendarHeart,
-  HandHeart, GraduationCap, Plane, Send, Camera, X, Share2, Mail
+  HandHeart, GraduationCap, Plane, Send, Camera, X, Share2, Mail, FileText
 } from "lucide-react";
 
 /* ===== Contact / integrations ===== */
 const WA_NUMBER = import.meta.env.VITE_WA_NUMBER || "966595552292";
 const LICENSE = import.meta.env.VITE_LICENSE || "4334299910";
-const SHEET_ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT || "https://script.google.com/macros/s/AKfycbyDKWjpBrCtV_QzIjHvsK67LkwQzH8t-KTHDpfhtTPH4YXO6YewE3Ydl0jEPfzAVnlMOw/exec";
+const SHEET_ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT || "https://script.google.com/macros/s/AKfycbygO6eNU9cIVo5_4nczuOj-TLyF0TsmLk8LHV9hiZ8h9Z_09XRLfU-L4ttjuFSTCRMBBw/exec";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Mulish:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap');
@@ -230,7 +230,7 @@ const T = {
     howTitle: "How to apply",
     how: [{ t: "Send your details", d: "Fill the short form or message us directly on WhatsApp." }, { t: "Quick interview", d: "A short video call to know your experience and specialties." }, { t: "Offer & relocation", d: "We arrange your contract, sponsorship and travel to the Kingdom." }],
     formTitle: "Start your application",
-    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["None", "Beginner", "Intermediate", "Fluent"], age: "Year of birth", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", socialsHint: "Add at least one account where you share your work \u2014 it helps us get to know you better.", username: "Username / handle", add: "Add", fieldsLeft: "fields left", allDone: "All set — ready to send!" },
+    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["None", "Beginner", "Intermediate", "Fluent"], age: "Year of birth", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", certsLabel: "Experience certificates (optional)", certsHint: "Massage certificates or proof of experience — PDF or images, uploaded securely.", certsBtn: "Add certificate", certAttached: "Certificate", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", socialsHint: "Add at least one account where you share your work \u2014 it helps us get to know you better.", username: "Username / handle", add: "Add", fieldsLeft: "fields left", allDone: "All set — ready to send!" },
     specs: ["Thai", "Swedish", "Deep Tissue", "Aromatherapy", "Hot Stone", "Reflexology"],
     extraLabel: "Other skills", extras: ["Massage only", "Pedicure", "Manicure", "Body care", "Hair styling", "Makeup"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
@@ -267,7 +267,7 @@ const T = {
     howTitle: "كيف تقدّمين",
     how: [{ t: "أرسلي بياناتكِ", d: "املئي النموذج المختصر أو راسلينا مباشرة على واتساب." }, { t: "مقابلة سريعة", d: "مكالمة فيديو قصيرة للتعرّف على خبرتكِ وتخصّصاتكِ." }, { t: "العرض والانتقال", d: "نرتّب العقد والكفالة والسفر إلى المملكة." }],
     formTitle: "ابدئي طلبكِ",
-    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["لا أجيدها", "مبتدئ", "متوسط", "بطلاقة"], age: "سنة الميلاد", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", socialsHint: "أضيفي حسابًا واحدًا على الأقل تعرضين فيه أعمالكِ — يساعدنا في التعرّف عليكِ بشكل أفضل.", username: "المعرّف (اليوزر)", add: "إضافة", fieldsLeft: "حقول باقية", allDone: "اكتملت البيانات — جاهز للإرسال!" },
+    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["لا أجيدها", "مبتدئ", "متوسط", "بطلاقة"], age: "سنة الميلاد", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", certsLabel: "شهادات الخبرة (اختياري)", certsHint: "شهادات المساج أو إثبات الخبرة — PDF أو صور، تُرفع بأمان.", certsBtn: "إضافة شهادة", certAttached: "شهادة", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", socialsHint: "أضيفي حسابًا واحدًا على الأقل تعرضين فيه أعمالكِ — يساعدنا في التعرّف عليكِ بشكل أفضل.", username: "المعرّف (اليوزر)", add: "إضافة", fieldsLeft: "حقول باقية", allDone: "اكتملت البيانات — جاهز للإرسال!" },
     specs: ["تايلندي", "سويدي", "أنسجة عميقة", "روائح", "أحجار ساخنة", "انعكاسات"],
     extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649", extras: ["\u0645\u0633\u0627\u062c \u0641\u0642\u0637", "\u0628\u0627\u062f\u064a\u0643\u064a\u0631", "\u0645\u0627\u0646\u064a\u0643\u064a\u0631", "\u0627\u0644\u0639\u0646\u0627\u064a\u0629 \u0628\u0627\u0644\u062c\u0633\u0645", "\u062a\u0635\u0641\u064a\u0641 \u0627\u0644\u0634\u0639\u0631", "\u0645\u0643\u064a\u0627\u062c"],
     cities: ["الرياض", "جدة", "الدمام", "المدينة المنورة", "الخبر", "أي مدينة"],
@@ -304,7 +304,7 @@ const T = {
     howTitle: "วิธีสมัคร",
     how: [{ t: "ส่งข้อมูลของคุณ", d: "กรอกฟอร์มสั้นๆ หรือทักหาเราโดยตรงทาง WhatsApp" }, { t: "สัมภาษณ์สั้นๆ", d: "วิดีโอคอลสั้นๆ เพื่อทำความรู้จักประสบการณ์และความเชี่ยวชาญของคุณ" }, { t: "ข้อเสนอและการย้ายถิ่น", d: "เราจัดการสัญญา การสนับสนุนวีซ่า และการเดินทางมายังราชอาณาจักร" }],
     formTitle: "เริ่มการสมัครของคุณ",
-    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["ไม่ได้เลย", "เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "ปีเกิด", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", socialsHint: "เพิ่มอย่างน้อย 1 บัญชีที่คุณแชร์ผลงาน — ช่วยให้เรารู้จักคุณมากขึ้น", username: "ชื่อผู้ใช้", add: "เพิ่ม", fieldsLeft: "ช่องที่เหลือ", allDone: "ครบถ้วน — พร้อมส่ง!" },
+    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["ไม่ได้เลย", "เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "ปีเกิด", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", certsLabel: "ใบรับรองประสบการณ์ (ไม่บังคับ)", certsHint: "ใบรับรองการนวดหรือหลักฐานประสบการณ์ — PDF หรือรูปภาพ อัปโหลดอย่างปลอดภัย", certsBtn: "เพิ่มใบรับรอง", certAttached: "ใบรับรอง", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", socialsHint: "เพิ่มอย่างน้อย 1 บัญชีที่คุณแชร์ผลงาน — ช่วยให้เรารู้จักคุณมากขึ้น", username: "ชื่อผู้ใช้", add: "เพิ่ม", fieldsLeft: "ช่องที่เหลือ", allDone: "ครบถ้วน — พร้อมส่ง!" },
     specs: ["นวดไทย", "สวีดิช", "เนื้อเยื่อลึก", "อโรมา", "หินร้อน", "กดจุดฝ่าเท้า"],
     extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46", extras: ["\u0e19\u0e27\u0e14\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e40\u0e14\u0e35\u0e22\u0e27", "\u0e40\u0e1e\u0e14\u0e34\u0e40\u0e04\u0e35\u0e22\u0e27", "\u0e17\u0e33\u0e40\u0e25\u0e47\u0e1a", "\u0e14\u0e39\u0e41\u0e25\u0e1c\u0e34\u0e27\u0e01\u0e32\u0e22", "\u0e08\u0e31\u0e14\u0e41\u0e15\u0e48\u0e07\u0e17\u0e23\u0e07\u0e1c\u0e21", "\u0e41\u0e15\u0e48\u0e07\u0e2b\u0e19\u0e49\u0e32"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
@@ -357,7 +357,7 @@ export default function App() {
   const [lang, setLang] = useState(detectLang);
   const t = T[lang];
   const ar = lang === "ar";
-  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] });
+  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [], certs: [] });
   const [status, setStatus] = useState("idle");
   const [invalidFields, setInvalidFields] = useState([]);
   const [socialP, setSocialP] = useState("Instagram");
@@ -416,6 +416,28 @@ export default function App() {
     if (out.length) setForm((f) => ({ ...f, photos: [...f.photos, ...out].slice(0, MAX_PHOTOS) }));
   };
   const removePhoto = (i) => setForm((f) => ({ ...f, photos: f.photos.filter((_, x) => x !== i) }));
+  const MAX_CERTS = 4;
+  const MAX_CERT_BYTES = 4.5 * 1024 * 1024; // ~4.5MB per file
+  const readFile = (file) => new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onerror = () => resolve(null);
+    reader.onload = () => resolve({ name: file.name || "certificate", data: reader.result });
+    reader.readAsDataURL(file);
+  });
+  const onCert = async (e) => {
+    const input = e.target;
+    const picked = Array.from(input.files || []);
+    if (!picked.length) { input.value = ""; return; }
+    const room = MAX_CERTS - form.certs.length;
+    const out = [];
+    for (const file of picked.slice(0, Math.max(0, room))) {
+      if (file.size && file.size > MAX_CERT_BYTES) continue; // skip oversized
+      try { const v = await readFile(file); if (v && v.data) out.push(v); } catch (err) { /* skip */ }
+    }
+    input.value = "";
+    if (out.length) setForm((f) => ({ ...f, certs: [...f.certs, ...out].slice(0, MAX_CERTS) }));
+  };
+  const removeCert = (i) => setForm((f) => ({ ...f, certs: f.certs.filter((_, x) => x !== i) }));
 
   useEffect(() => { document.title = "Sabai Careers · " + (ar ? "وظائف ساباي" : lang === "th" ? "ร่วมงานกับซาบาย" : "Join our therapists"); }, [lang]);
   // sync the default nationality label with language (only if untouched / default)
@@ -457,7 +479,7 @@ export default function App() {
     setStatus("sending");
     try {
       await fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: (function(){ var y=parseInt(form.birthYear,10); var c=new Date().getFullYear(); return (y>1900 && y<=c) ? String(c-y) : ""; })(), birthYear: form.birthYear, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, lang }) });
+        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: (function(){ var y=parseInt(form.birthYear,10); var c=new Date().getFullYear(); return (y>1900 && y<=c) ? String(c-y) : ""; })(), birthYear: form.birthYear, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, certs: form.certs, lang }) });
       setStatus("sent");
     } catch (e) {
       window.open(waHref, "_blank");
@@ -644,6 +666,22 @@ export default function App() {
                 )}
               </div>
               <div className="field"><label>{L.msg}</label><textarea rows={3} value={form.message} onChange={(e) => set("message", e.target.value)} /></div>
+              <div className="field">
+                <label>{L.certsLabel}</label>
+                <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+                  {form.certs.length < MAX_CERTS && (
+                    <label className="btn btn-ghost" style={{ padding: "11px 18px", cursor: "pointer" }}><FileText size={17} /> {L.certsBtn}<input type="file" accept=".pdf,image/*,application/pdf" multiple onChange={onCert} style={{ display: "none" }} /></label>
+                  )}
+                  {form.certs.map((cf, i) => (
+                    <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 10px 7px 12px", borderRadius: 999, background: "var(--gold-soft)", border: "1px solid var(--gold)", maxWidth: 180 }}>
+                      <FileText size={14} style={{ color: "var(--gold-dk)", flexShrink: 0 }} />
+                      <span style={{ fontSize: 12.5, color: "var(--gold-dk)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} dir="ltr">{cf.name}</span>
+                      <button type="button" onClick={() => removeCert(i)} aria-label="remove" style={{ width: 18, height: 18, borderRadius: "50%", display: "grid", placeItems: "center", border: "none", background: "transparent", color: "var(--coral)", flexShrink: 0 }}><X size={13} /></button>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.certsHint}</p>
+              </div>
               <div className="field">
                 <label>{L.photo}</label>
                 <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
