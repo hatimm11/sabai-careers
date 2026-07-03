@@ -8,7 +8,7 @@ import {
 /* ===== Contact / integrations ===== */
 const WA_NUMBER = import.meta.env.VITE_WA_NUMBER || "966595552292";
 const LICENSE = import.meta.env.VITE_LICENSE || "4334299910";
-const SHEET_ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT || "https://script.google.com/macros/s/AKfycbygO6eNU9cIVo5_4nczuOj-TLyF0TsmLk8LHV9hiZ8h9Z_09XRLfU-L4ttjuFSTCRMBBw/exec";
+const SHEET_ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT || "https://script.google.com/macros/s/AKfycbze3j33alUPCA9zZzQbvHRBNzvr8j2O3zFTXrhMFbxALaMNo804BNw3J76fsAwxn075IA/exec";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Mulish:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap');
@@ -41,9 +41,9 @@ const CSS = `
 .lede{ color:var(--ink-2); font-size:clamp(15px,1.6vw,18px); }
 .center{ text-align:center; }
 .btn{ display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:15px 28px; border-radius:999px; font-weight:700; font-size:15px; transition:transform .25s, box-shadow .25s; }
-.btn-gold{ color:#fff; background:linear-gradient(135deg,var(--gold-lt),var(--gold) 55%,var(--gold-dk)); box-shadow:0 12px 26px -12px rgba(92,122,76,.5); }
+.btn-gold{ color:#fff !important; background:#0C9A63; box-shadow:0 10px 22px -12px rgba(12,154,99,.5); }
 .btn-gold:hover{ transform:translateY(-2px); }
-.btn-wa{ color:#fff; background:#1faf55; background:linear-gradient(135deg,#25d366,#1faf55); box-shadow:0 12px 26px -12px rgba(31,175,85,.6); }
+.btn-wa{ color:#fff !important; background:#1faf55; box-shadow:0 12px 26px -12px rgba(31,175,85,.6); }
 .btn-wa:hover{ transform:translateY(-2px); }
 .btn-ghost{ color:var(--gold-dk); border:1.5px solid var(--line); background:#fff; }
 .btn-ghost:hover{ border-color:var(--gold); }
@@ -52,7 +52,7 @@ const CSS = `
 .fil span:last-child{ background:linear-gradient(270deg,transparent,var(--gold)); }
 .card{ background:#fff; border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow-sm); transition:transform .3s, box-shadow .3s, border-color .3s; }
 .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--gold-lt); }
-.openpill{ display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px; background:linear-gradient(135deg,#FFF4D6,#FDE7A9); color:#8A6D1B; font-weight:700; font-size:12.5px; border:1px solid rgba(180,140,20,.28); }
+.openpill{ display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px; background:#FDE7A9; color:#8A6D1B; font-weight:700; font-size:12.5px; border:1px solid rgba(180,140,20,.28); }
 .openpill .dot{ width:8px; height:8px; border-radius:50%; background:#E8A200; box-shadow:0 0 0 0 rgba(232,162,0,.6); animation:opulse 1.8s infinite; }
 @keyframes opulse{ 0%{ box-shadow:0 0 0 0 rgba(232,162,0,.55); } 70%{ box-shadow:0 0 0 8px rgba(232,162,0,0); } 100%{ box-shadow:0 0 0 0 rgba(232,162,0,0); } }
 .women{ display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px; background:var(--rose-soft); color:var(--magenta); font-weight:700; font-size:13px; }
@@ -120,7 +120,7 @@ const CSS = `
 .sb[dir="rtl"] .earn-amt{ font-family:'El Messiri',serif; }
 
 .steps-card{ padding:20px; display:flex; gap:14px; align-items:flex-start; }
-.steps-card .num{ width:40px;height:40px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk)); }
+.steps-card .num{ width:40px;height:40px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;background:var(--gold-dk); }
 
 .apply{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start; max-width:640px; margin:0 auto; }
 @media(max-width:820px){ .apply{ grid-template-columns:1fr; } }
@@ -133,7 +133,7 @@ const CSS = `
 .spec button{ padding:9px 14px; border-radius:999px; border:1.5px solid var(--line); background:#fff; font-weight:600; font-size:13px; transition:all .15s; }
 .spec button.on{ border-color:var(--gold); background:var(--gold-soft); color:var(--gold-dk); }
 .wa-side{ padding:28px; text-align:center; background:var(--rose-soft); }
-.wa-ic{ width:70px;height:70px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#25d366,#1faf55); box-shadow:0 14px 30px -14px rgba(31,175,85,.7); }
+.wa-ic{ width:70px;height:70px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;color:#fff;background:#1faf55; box-shadow:0 14px 30px -14px rgba(31,175,85,.7); }
 .cta-band{ background:#fff; border:1px solid var(--line); border-radius:28px; padding:50px 34px; text-align:center; }
 footer.ft{ background:#2E2438; color:#fff; padding:44px 0 24px; margin-top:20px; }
 .ft a,.ft p{ color:rgba(255,255,255,.74); font-size:14px; }
@@ -141,14 +141,14 @@ footer.ft{ background:#2E2438; color:#fff; padding:44px 0 24px; margin-top:20px;
 .ft-top{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }
 .ft-bottom{ border-top:1px solid rgba(255,255,255,.14); margin-top:28px; padding-top:18px; font-size:13px; color:rgba(255,255,255,.6); text-align:center; }
 .fab{ position:fixed; inset-block-end:22px; inset-inline-end:22px; z-index:70; width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;
-  background:linear-gradient(135deg,#25d366,#1faf55); box-shadow:0 14px 30px -10px rgba(31,175,85,.7); animation:wapulse 2.2s infinite; }
+  background:#1faf55; box-shadow:0 14px 30px -10px rgba(31,175,85,.7); animation:wapulse 2.2s infinite; }
 @keyframes wapulse{ 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5); } 70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); } 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); } }
 .spec button.bad-chip{ border-color:var(--magenta)!important; box-shadow:0 0 0 2px rgba(194,91,126,.18); color:var(--magenta); }
 .platrow{ display:flex; gap:8px; flex-wrap:wrap; }
 .platbtn{ width:44px; height:44px; border-radius:12px; border:1.5px solid var(--line); background:#fff; display:grid; place-items:center; color:var(--ink-2); cursor:pointer; transition:all .15s ease; }
 .platbtn:hover{ border-color:var(--gold); color:var(--gold-dk); }
 .platbtn.on{ border-color:var(--gold); background:var(--gold-soft); color:var(--gold-dk); box-shadow:0 0 0 3px rgba(126,155,110,.15); }
-.btn-add-ready{ color:#fff !important; background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk)) !important; border-color:transparent !important; animation:addbounce 1.6s ease-in-out infinite; }
+.btn-add-ready{ color:#fff !important; background:var(--gold-dk) !important; border-color:transparent !important; animation:addbounce 1.6s ease-in-out infinite; }
 .btn-add-more{ color:var(--gold-dk) !important; background:var(--gold-soft) !important; border-color:var(--gold) !important; animation:addbounce 1.6s ease-in-out infinite; }
 @keyframes addbounce{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-4px) scale(1.02); } }
 @keyframes addpulse{ 0%,100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(126,155,110,.6); } 50%{ transform:scale(1.07); box-shadow:0 0 0 9px rgba(126,155,110,0); } }
@@ -230,9 +230,9 @@ const T = {
     howTitle: "How to apply",
     how: [{ t: "Send your details", d: "Fill the short form or message us directly on WhatsApp." }, { t: "Quick interview", d: "A short video call to know your experience and specialties." }, { t: "Offer & relocation", d: "We arrange your contract, sponsorship and travel to the Kingdom." }],
     formTitle: "Start your application",
-    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["None", "Beginner", "Intermediate", "Fluent"], age: "Year of birth", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city", spec: "Specialties", certsLabel: "Experience certificates (optional)", certsHint: "Massage certificates or proof of experience — PDF or images, uploaded securely.", certsBtn: "Add certificate", certAttached: "Certificate", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", socialsHint: "Add at least one account where you share your work \u2014 it helps us get to know you better.", username: "Username / handle", add: "Add", fieldsLeft: "fields left", allDone: "All set — ready to send!" },
-    specs: ["Thai", "Swedish", "Deep Tissue", "Aromatherapy", "Hot Stone", "Reflexology"],
-    extraLabel: "Other skills", extras: ["Massage only", "Pedicure", "Manicure", "Body care", "Hair styling", "Makeup"],
+    f: { name: "Full name", nat: "Nationality", nationality0: "Thailand", nats: ["Thailand", "Myanmar", "Laos", "Cambodia", "Vietnam", "Philippines", "Indonesia", "Other"], years: "Years of experience", expPlace: "Where did you work? (optional)", expHint: "Name of the spa / massage center where you worked \u2014 add a link if you have one.", expPh: "e.g. Lotus Spa, Bangkok \u2014 or a link", arabicLabel: "Arabic proficiency", englishLabel: "English proficiency", arabicLevels: ["None", "Beginner", "Intermediate", "Fluent"], age: "Year of birth", height: "Height (cm)", weight: "Weight (kg)", city: "Preferred city to work", startLabel: "When can you start?", startOpts: ["Immediately", "Within a month", "Within 3 months", "I need more time"], spec: "Specialties", certsLabel: "Experience certificates (optional)", certsHint: "Massage certificates or proof of experience — PDF or images, uploaded securely.", certsBtn: "Add certificate", certAttached: "Certificate", photo: "Personal photo (optional)", photoHint: "Up to 5 photos. They are uploaded securely with your application.", msg: "Anything to add (optional)", submit: "Send application", waSend: "Send via WhatsApp", sending: "Sending…", sentT: "Application received", sentD: "Thank you! Our recruitment team will be in touch soon.", err: "Couldn't send — please try WhatsApp instead.", another: "Send another", req: "Please complete the required fields.", encourage: "Adding your previous workplace link, social media, and photos helps us shortlist the best applicants — worth including if you can.", waRefNote: "Tip: also send your details on WhatsApp so we can follow up with you directly.", intro: "Hello Sabai, I'd like to apply as a massage therapist.", choose: "Choose photo", select: "Select", photoAttached: "I'll attach my photo in the chat.", phone: "Mobile number", socials: "Social media", socialsHint: "Add at least one account where you share your work \u2014 it helps us get to know you better.", username: "Username / handle", add: "Add", fieldsLeft: "fields left", allDone: "All set — ready to send!", encStart: "Takes about 2 minutes \u2014 let's go! \ud83c\udf38", encHalf: "Great, halfway there! \ud83c\udf38", encAlmost: "Almost done \u2014 you're so close!", next: "Next", back: "Back", stepOf: "Step {n} of 3" },
+    specs: ["Thai", "Swedish", "Deep Tissue", "Aromatherapy", "Hot Stone", "Reflexology", "Herbal Compress"],
+    extraLabel: "Other skills (optional)", extras: ["Body Scrub", "Pedicure", "Manicure", "Facial", "Waxing"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
     waTitle: "Prefer to chat now?", waSub: "Message our recruitment team directly on WhatsApp — we reply within 24 hours.", waBtn: "Chat on WhatsApp",
     ctaTitle: "Your craft deserves a premium home", ctaSub: "Join Sabai and build your career with a brand that values your skill.",
@@ -267,9 +267,9 @@ const T = {
     howTitle: "كيف تقدّمين",
     how: [{ t: "أرسلي بياناتكِ", d: "املئي النموذج المختصر أو راسلينا مباشرة على واتساب." }, { t: "مقابلة سريعة", d: "مكالمة فيديو قصيرة للتعرّف على خبرتكِ وتخصّصاتكِ." }, { t: "العرض والانتقال", d: "نرتّب العقد والكفالة والسفر إلى المملكة." }],
     formTitle: "ابدئي طلبكِ",
-    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["لا أجيدها", "مبتدئ", "متوسط", "بطلاقة"], age: "سنة الميلاد", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة", spec: "التخصّصات", certsLabel: "شهادات الخبرة (اختياري)", certsHint: "شهادات المساج أو إثبات الخبرة — PDF أو صور، تُرفع بأمان.", certsBtn: "إضافة شهادة", certAttached: "شهادة", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", socialsHint: "أضيفي حسابًا واحدًا على الأقل تعرضين فيه أعمالكِ — يساعدنا في التعرّف عليكِ بشكل أفضل.", username: "المعرّف (اليوزر)", add: "إضافة", fieldsLeft: "حقول باقية", allDone: "اكتملت البيانات — جاهز للإرسال!" },
-    specs: ["تايلندي", "سويدي", "أنسجة عميقة", "روائح", "أحجار ساخنة", "انعكاسات"],
-    extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649", extras: ["\u0645\u0633\u0627\u062c \u0641\u0642\u0637", "\u0628\u0627\u062f\u064a\u0643\u064a\u0631", "\u0645\u0627\u0646\u064a\u0643\u064a\u0631", "\u0627\u0644\u0639\u0646\u0627\u064a\u0629 \u0628\u0627\u0644\u062c\u0633\u0645", "\u062a\u0635\u0641\u064a\u0641 \u0627\u0644\u0634\u0639\u0631", "\u0645\u0643\u064a\u0627\u062c"],
+    f: { name: "الاسم الكامل", nat: "الجنسية", nationality0: "تايلند", nats: ["تايلند", "ميانمار", "لاوس", "كمبوديا", "فيتنام", "الفلبين", "إندونيسيا", "أخرى"], years: "سنوات الخبرة", expPlace: "أين عملتِ سابقًا؟ (اختياري)", expHint: "اسم السبا أو مركز المساج اللي اشتغلتِ فيه — وأضيفي رابطًا إن وُجد.", expPh: "مثال: Lotus Spa — أو رابط", arabicLabel: "إجادة اللغة العربية", englishLabel: "إجادة اللغة الإنجليزية", arabicLevels: ["لا أجيدها", "مبتدئ", "متوسط", "بطلاقة"], age: "سنة الميلاد", height: "الطول (سم)", weight: "الوزن (كجم)", city: "المدينة المفضّلة للعمل", startLabel: "متى تقدرين تبدأين؟", startOpts: ["فورًا", "خلال شهر", "خلال ٣ أشهر", "أحتاج وقتًا أطول"], spec: "التخصّصات", certsLabel: "شهادات الخبرة (اختياري)", certsHint: "شهادات المساج أو إثبات الخبرة — PDF أو صور، تُرفع بأمان.", certsBtn: "إضافة شهادة", certAttached: "شهادة", photo: "صورة شخصية (اختياري)", photoHint: "حتى ٥ صور. تُرفع بأمان مع طلبكِ.", msg: "أي إضافة (اختياري)", submit: "إرسال الطلب", waSend: "إرسال عبر واتساب", sending: "جارٍ الإرسال…", sentT: "تم استلام طلبكِ", sentD: "شكرًا لكِ! سيتواصل معكِ فريق التوظيف قريبًا.", err: "تعذّر الإرسال — جرّبي واتساب من فضلكِ.", another: "إرسال طلب آخر", req: "الرجاء إكمال الحقول المطلوبة.", encourage: "إضافة رابط جهة عملكِ السابق وحسابات التواصل والصور تساعدنا في فرز أفضل المتقدّمين — يُفضّل إرفاقها إن أمكن.", waRefNote: "ملاحظة: أرسلي بياناتكِ عبر واتساب أيضًا لنتابع طلبكِ مباشرة.", intro: "مرحبًا ساباي، أرغب بالتقديم كمعالِجة مساج.", choose: "اختاري صورة", select: "اختاري", photoAttached: "سأرفق صورتي في المحادثة.", phone: "رقم الجوال", socials: "حسابات التواصل", socialsHint: "أضيفي حسابًا واحدًا على الأقل تعرضين فيه أعمالكِ — يساعدنا في التعرّف عليكِ بشكل أفضل.", username: "المعرّف (اليوزر)", add: "إضافة", fieldsLeft: "حقول باقية", allDone: "اكتملت البيانات — جاهز للإرسال!", encStart: "تستغرق دقيقتين فقط — هيّا بنا! 🌸", encHalf: "رائع، نصف الطريق! 🌸", encAlmost: "باقي القليل — أنتِ قريبة جدًا!", next: "التالي", back: "السابق", stepOf: "الخطوة {n} من ٣" },
+    specs: ["تايلندي", "سويدي", "أنسجة عميقة", "روائح", "أحجار ساخنة", "انعكاسات", "كمادات عشبية"],
+    extraLabel: "\u0645\u0647\u0627\u0631\u0627\u062a \u0623\u062e\u0631\u0649 (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)", extras: ["تقشير الجسم", "باديكير", "مانيكير", "العناية بالوجه", "إزالة الشعر"],
     cities: ["الرياض", "جدة", "الدمام", "المدينة المنورة", "الخبر", "أي مدينة"],
     waTitle: "تفضّلين المحادثة الآن؟", waSub: "راسلي فريق التوظيف مباشرة على واتساب — نردّ خلال ٢٤ ساعة.", waBtn: "محادثة واتساب",
     ctaTitle: "مهارتكِ تستحقّ بيتًا فاخرًا", ctaSub: "انضمّي إلى ساباي وابنِي مستقبلكِ مع علامة تقدّر مهارتكِ.",
@@ -304,9 +304,9 @@ const T = {
     howTitle: "วิธีสมัคร",
     how: [{ t: "ส่งข้อมูลของคุณ", d: "กรอกฟอร์มสั้นๆ หรือทักหาเราโดยตรงทาง WhatsApp" }, { t: "สัมภาษณ์สั้นๆ", d: "วิดีโอคอลสั้นๆ เพื่อทำความรู้จักประสบการณ์และความเชี่ยวชาญของคุณ" }, { t: "ข้อเสนอและการย้ายถิ่น", d: "เราจัดการสัญญา การสนับสนุนวีซ่า และการเดินทางมายังราชอาณาจักร" }],
     formTitle: "เริ่มการสมัครของคุณ",
-    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["ไม่ได้เลย", "เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "ปีเกิด", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่ต้องการ", spec: "ความเชี่ยวชาญ", certsLabel: "ใบรับรองประสบการณ์ (ไม่บังคับ)", certsHint: "ใบรับรองการนวดหรือหลักฐานประสบการณ์ — PDF หรือรูปภาพ อัปโหลดอย่างปลอดภัย", certsBtn: "เพิ่มใบรับรอง", certAttached: "ใบรับรอง", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", socialsHint: "เพิ่มอย่างน้อย 1 บัญชีที่คุณแชร์ผลงาน — ช่วยให้เรารู้จักคุณมากขึ้น", username: "ชื่อผู้ใช้", add: "เพิ่ม", fieldsLeft: "ช่องที่เหลือ", allDone: "ครบถ้วน — พร้อมส่ง!" },
-    specs: ["นวดไทย", "สวีดิช", "เนื้อเยื่อลึก", "อโรมา", "หินร้อน", "กดจุดฝ่าเท้า"],
-    extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46", extras: ["\u0e19\u0e27\u0e14\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e40\u0e14\u0e35\u0e22\u0e27", "\u0e40\u0e1e\u0e14\u0e34\u0e40\u0e04\u0e35\u0e22\u0e27", "\u0e17\u0e33\u0e40\u0e25\u0e47\u0e1a", "\u0e14\u0e39\u0e41\u0e25\u0e1c\u0e34\u0e27\u0e01\u0e32\u0e22", "\u0e08\u0e31\u0e14\u0e41\u0e15\u0e48\u0e07\u0e17\u0e23\u0e07\u0e1c\u0e21", "\u0e41\u0e15\u0e48\u0e07\u0e2b\u0e19\u0e49\u0e32"],
+    f: { name: "ชื่อ-นามสกุล", nat: "สัญชาติ", nationality0: "ไทย", nats: ["ไทย", "เมียนมา", "ลาว", "กัมพูชา", "เวียดนาม", "ฟิลิปปินส์", "อินโดนีเซีย", "อื่นๆ"], years: "ประสบการณ์ (ปี)", expPlace: "เคยทำงานที่ไหน? (ไม่บังคับ)", expHint: "ชื่อสปา/ร้านนวดที่เคยทำงาน — ใส่ลิงก์ด้วยก็ได้", expPh: "เช่น Lotus Spa — หรือลิงก์", arabicLabel: "ระดับภาษาอาหรับ", englishLabel: "ระดับภาษาอังกฤษ", arabicLevels: ["ไม่ได้เลย", "เริ่มต้น", "ปานกลาง", "คล่องแคล่ว"], age: "ปีเกิด", height: "ส่วนสูง (ซม.)", weight: "น้ำหนัก (กก.)", city: "เมืองที่อยากทำงาน", startLabel: "เริ่มงานได้เมื่อไหร่?", startOpts: ["ได้ทันที", "ภายใน 1 เดือน", "ภายใน 3 เดือน", "ขอเวลามากกว่านี้"], spec: "ความเชี่ยวชาญ", certsLabel: "ใบรับรองประสบการณ์ (ไม่บังคับ)", certsHint: "ใบรับรองการนวดหรือหลักฐานประสบการณ์ — PDF หรือรูปภาพ อัปโหลดอย่างปลอดภัย", certsBtn: "เพิ่มใบรับรอง", certAttached: "ใบรับรอง", photo: "รูปถ่ายส่วนตัว (ไม่บังคับ)", photoHint: "สูงสุด 5 รูป รูปจะถูกอัปโหลดอย่างปลอดภัยพร้อมใบสมัคร", msg: "ข้อความเพิ่มเติม (ไม่บังคับ)", submit: "ส่งใบสมัคร", waSend: "ส่งผ่าน WhatsApp", sending: "กำลังส่ง…", sentT: "ได้รับใบสมัครแล้ว", sentD: "ขอบคุณค่ะ! ทีมรับสมัครจะติดต่อกลับเร็วๆ นี้", err: "ส่งไม่สำเร็จ — โปรดลองใช้ WhatsApp", another: "ส่งใบสมัครอีกครั้ง", req: "โปรดกรอกข้อมูลที่จำเป็นให้ครบ", encourage: "การใส่ลิงก์ที่ทำงานเดิม โซเชียลมีเดีย และรูปถ่าย ช่วยให้เราคัดเลือกผู้สมัครที่ดีที่สุด — แนะนำให้ใส่หากทำได้", waRefNote: "เคล็ดลับ: ส่งข้อมูลของคุณทาง WhatsApp ด้วย เพื่อให้เราติดตามคุณโดยตรง", intro: "สวัสดีค่ะ Sabai ฉันต้องการสมัครเป็นนักนวดบำบัด", choose: "เลือกรูปภาพ", select: "เลือก", photoAttached: "ฉันจะแนบรูปในแชท", phone: "เบอร์โทรศัพท์", socials: "โซเชียลมีเดีย", socialsHint: "เพิ่มอย่างน้อย 1 บัญชีที่คุณแชร์ผลงาน — ช่วยให้เรารู้จักคุณมากขึ้น", username: "ชื่อผู้ใช้", add: "เพิ่ม", fieldsLeft: "ช่องที่เหลือ", allDone: "ครบถ้วน — พร้อมส่ง!", encStart: "ใช้เวลาแค่ 2 นาที — เริ่มเลย! 🌸", encHalf: "เยี่ยม มาครึ่งทางแล้ว! 🌸", encAlmost: "อีกนิดเดียว — ใกล้เสร็จแล้ว!", next: "ถัดไป", back: "ย้อนกลับ", stepOf: "ขั้นที่ {n} จาก 3" },
+    specs: ["นวดไทย", "สวีดิช", "เนื้อเยื่อลึก", "อโรมา", "หินร้อน", "กดจุดฝ่าเท้า", "ประคบสมุนไพร"],
+    extraLabel: "\u0e17\u0e31\u0e01\u0e29\u0e30\u0e2d\u0e37\u0e48\u0e19\u0e46 (\u0e44\u0e21\u0e48\u0e1a\u0e31\u0e07\u0e04\u0e31\u0e1a)", extras: ["ขัดผิว", "ทำเล็บเท้า", "ทำเล็บมือ", "ทรีทเมนต์หน้า", "แว็กซ์ขน"],
     cities: ["Riyadh", "Jeddah", "Dammam", "Madinah", "Khobar", "Any city"],
     waTitle: "อยากแชทตอนนี้เลยไหม", waSub: "ทักทีมรับสมัครโดยตรงทาง WhatsApp — เราตอบกลับภายใน 24 ชั่วโมง", waBtn: "แชททาง WhatsApp",
     ctaTitle: "ฝีมือของคุณสมควรได้บ้านระดับพรีเมียม", ctaSub: "ร่วมงานกับซาบายและสร้างอาชีพกับแบรนด์ที่ให้คุณค่ากับทักษะของคุณ",
@@ -324,6 +324,7 @@ const T = {
 
 const LANGS = [["en", "EN"], ["ar", "عربي"], ["th", "ไทย"]];
 const PLATFORMS = ["Instagram", "TikTok", "Facebook", "Snapchat", "X"];
+const DIAL_CODES = [["+66", "🇹🇭 +66"], ["+95", "🇲🇲 +95"], ["+856", "🇱🇦 +856"], ["+855", "🇰🇭 +855"], ["+84", "🇻🇳 +84"], ["+63", "🇵🇭 +63"], ["+62", "🇮🇩 +62"], ["+966", "🇸🇦 +966"]];
 const PlatIcon = ({ name, s = 20 }) => {
   const p = { width: s, height: s, viewBox: "0 0 24 24", "aria-hidden": "true" };
   switch (name) {
@@ -357,11 +358,66 @@ export default function App() {
   const [lang, setLang] = useState(detectLang);
   const t = T[lang];
   const ar = lang === "ar";
-  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [], certs: [] });
+  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", start: "", message: "", specs: [], extras: [], socials: [], photos: [], certs: [] });
   const [status, setStatus] = useState("idle");
   const [invalidFields, setInvalidFields] = useState([]);
   const [socialP, setSocialP] = useState("Instagram");
   const [socialU, setSocialU] = useState("");
+  const [phoneCode, setPhoneCode] = useState("+66");
+  const [step, setStep] = useState(1);
+  const genId = () => "SB" + Date.now() + Math.floor(Math.random() * 1000);
+  const [leadId, setLeadId] = useState(() => {
+    try { const r = localStorage.getItem("sabai_lead_id"); if (r) return r; const v = genId(); localStorage.setItem("sabai_lead_id", v); return v; } catch (e) { return genId(); }
+  });
+  const buildBody = (stage) => JSON.stringify({
+    id: leadId, stage,
+    name: form.name, phone: (phoneCode + " " + form.phone).trim(),
+    phoneWa: (phoneCode.replace(/[^0-9]/g, "") + form.phone.replace(/[^0-9]/g, "").replace(/^0+/, "")),
+    nationality: form.nationality,
+    age: (function () { var y = parseInt(form.birthYear, 10); var c = new Date().getFullYear(); return (y > 1900 && y <= c) ? String(c - y) : ""; })(),
+    birthYear: form.birthYear, height: form.height, weight: form.weight,
+    years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english,
+    specs: form.specs, extras: form.extras, city: form.city, start: form.start,
+    socials: form.socials, message: form.message,
+    photos: stage === "final" ? form.photos : [], certs: stage === "final" ? form.certs : [],
+    lang
+  });
+  const sendData = (stage) => {
+    if (!SHEET_ENDPOINT) return Promise.resolve();
+    return fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: buildBody(stage) });
+  };
+  const STEP_REQUIRED = { 1: ["name", "phone", "nationality", "city", "start"], 2: ["years", "arabic", "english", "specs"], 3: ["birthYear", "height", "weight", "socials"] };
+  const stepMissing = (n) => STEP_REQUIRED[n].filter((k) => {
+    const v = form[k];
+    return Array.isArray(v) ? v.length === 0 : !String(v || "").trim();
+  });
+  const goNext = () => {
+    const miss = stepMissing(step);
+    if (miss.length) { setInvalidFields(miss); setStatus("invalid"); return; }
+    if (step === 1) { try { sendData("partial"); } catch (e) {} }  // التقاط مبدئي: لا نفقد أي عميلة
+    setInvalidFields([]); setStatus("idle"); setStep((n) => Math.min(3, n + 1));
+    if (typeof document !== "undefined") { const el = document.getElementById("apply"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  };
+  const goBack = () => { setInvalidFields([]); setStatus("idle"); setStep((n) => Math.max(1, n - 1)); };
+  const DRAFT_KEY = "sabai_draft_v1";
+  // restore draft on first mount
+  useEffect(() => {
+    try {
+      const raw = typeof localStorage !== "undefined" && localStorage.getItem(DRAFT_KEY);
+      if (raw) {
+        const d = JSON.parse(raw);
+        if (d && d.form) setForm((f) => ({ ...f, ...d.form, photos: [], certs: [] }));
+        if (d && d.phoneCode) setPhoneCode(d.phoneCode);
+      }
+    } catch (e) {}
+  }, []);
+  // auto-save draft (exclude heavy base64 photos/certs)
+  useEffect(() => {
+    try {
+      const { photos, certs, ...light } = form;
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ form: light, phoneCode }));
+    } catch (e) {}
+  }, [form, phoneCode]);
   const addSocial = () => { const u = socialU.trim(); if (!u) return; setForm((f) => ({ ...f, socials: [...f.socials, { p: socialP, u: u.replace(/^@/, "") }] })); setSocialU(""); setInvalidFields((a) => a.filter((x) => x !== "socials")); };
   const removeSocial = (i) => setForm((f) => ({ ...f, socials: f.socials.filter((_, x) => x !== i) }));
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
@@ -441,14 +497,14 @@ export default function App() {
 
   useEffect(() => { document.title = "Sabai Careers · " + (ar ? "وظائف ساباي" : lang === "th" ? "ร่วมงานกับซาบาย" : "Join our therapists"); }, [lang]);
   // sync the default nationality label with language (only if untouched / default)
-  useEffect(() => { setForm((f) => (["Thailand", "تايلند", "ไทย"].includes(f.nationality) ? { ...f, nationality: t.f.nationality0 } : f)); }, [lang]);
+  useEffect(() => { setForm((f) => { const all = [T.en.f.nats, T.ar.f.nats, T.th.f.nats]; let idx = -1; for (const arr of all) { const i = arr.indexOf(f.nationality); if (i > -1) { idx = i; break; } } return idx > -1 ? { ...f, nationality: t.f.nats[idx] } : f; }); }, [lang]);
 
   const L = t.f;
   const buildMsg = () => {
     const lines = [L.intro, "",
-      `${L.name}: ${form.name || "-"}`, `${L.phone}: ${form.phone || "-"}`, `${L.nat}: ${form.nationality || "-"}`,
+      `${L.name}: ${form.name || "-"}`, `${L.phone}: ${form.phone ? (phoneCode + " " + form.phone) : "-"}`, `${L.nat}: ${form.nationality || "-"}`,
       `${L.age}: ${form.birthYear || "-"}`, `${L.height}: ${form.height || "-"}`, `${L.weight}: ${form.weight || "-"}`,
-      `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${L.arabicLabel}: ${form.arabic || "-"}`, `${L.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`,
+      `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${L.arabicLabel}: ${form.arabic || "-"}`, `${L.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`, `${L.startLabel}: ${form.start || "-"}`,
       `${L.socials}: ${form.socials.map((s) => `${s.p}: ${s.u}`).join(" · ") || "-"}`];
     if (form.message) lines.push(`${L.msg}: ${form.message}`);
     if (form.photos.length) lines.push(L.photoAttached + (form.photos.length > 1 ? " (" + form.photos.length + ")" : ""));
@@ -456,7 +512,7 @@ export default function App() {
   };
   const waHref = `https://wa.me/${WA_NUMBER}?text=${buildMsg()}`;
   const waPlain = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(L.intro)}`;
-  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.arabic.trim() && form.english.trim() && form.birthYear.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.extras.length && form.city.trim() && form.socials.length;
+  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.arabic.trim() && form.english.trim() && form.birthYear.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.city.trim() && form.socials.length;
   const submit = async () => {
     if (status === "sending") return;
     const missing = [];
@@ -470,16 +526,15 @@ export default function App() {
     if (!form.height.trim()) missing.push("height");
     if (!form.weight.trim()) missing.push("weight");
     if (!form.specs.length) missing.push("specs");
-    if (!form.extras.length) missing.push("extras");
-    if (!form.city.trim()) missing.push("city");
+        if (!form.city.trim()) missing.push("city");
+    if (!form.start.trim()) missing.push("start");
     if (!form.socials.length) missing.push("socials");
     if (missing.length) { setInvalidFields(missing); setStatus("invalid"); return; }
     setInvalidFields([]);
     if (!SHEET_ENDPOINT) { window.open(waHref, "_blank"); setStatus("sent"); return; }
     setStatus("sending");
     try {
-      await fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, nationality: form.nationality, age: (function(){ var y=parseInt(form.birthYear,10); var c=new Date().getFullYear(); return (y>1900 && y<=c) ? String(c-y) : ""; })(), birthYear: form.birthYear, height: form.height, weight: form.weight, years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english, specs: form.specs, extras: form.extras, city: form.city, socials: form.socials, message: form.message, photos: form.photos, certs: form.certs, lang }) });
+      await sendData("final");
       setStatus("sent");
     } catch (e) {
       window.open(waHref, "_blank");
@@ -511,7 +566,7 @@ export default function App() {
           </div>
           <div className="nav-act">
             <div className="langs">{LANGS.map(([c, l]) => <button key={c} className={lang === c ? "on" : ""} onClick={() => setLang(c)}>{l}</button>)}</div>
-            <a className="btn btn-gold desktop-cta" style={{ padding: "11px 20px" }} href="#apply">{t.applyNow}</a>
+            <a className="btn btn-gold desktop-cta" style={{ padding: "11px 20px", color: "#fff" }} href="#apply">{t.applyNow}</a>
           </div>
         </div>
       </nav>
@@ -525,7 +580,7 @@ export default function App() {
             <h1>{t.hero.h1a} <em>{t.hero.h1b}</em> {t.hero.h1c}</h1>
             <p className="lede" style={{ marginTop: 18 }}>{t.hero.sub}</p>
             <div className="hero-cta">
-              <a className="btn btn-gold" href="#apply">{t.applyNow}</a>
+              <a className="btn btn-gold" style={{ color: "#fff" }} href="#apply">{t.applyNow}</a>
               <a className="btn btn-ghost" href="#perks">{t.hero.learn}</a>
             </div>
             <div className="hero-mini">
@@ -625,117 +680,146 @@ export default function App() {
           <div className="center reveal" style={{ marginBottom: 30 }}><div className="eyebrow" style={{ justifyContent: "center" }}>{t.apply2}</div><h2 className="title">{t.formTitle}</h2></div>
           <div className="apply">
             <div className="card form reveal">
-              <div className="field"><label style={invalidFields.includes("name") ? { color: "var(--magenta)" } : null}>{L.name}</label><input value={form.name} onChange={(e) => setF("name", e.target.value)} placeholder={L.name} style={bad("name")} /></div>
-              <div className="field"><label style={invalidFields.includes("phone") ? { color: "var(--magenta)" } : null}>{L.phone}</label><input value={form.phone} onChange={(e) => setF("phone", e.target.value.replace(/[^0-9+ ]/g, ""))} placeholder="+66 8X XXX XXXX" dir="ltr" inputMode="tel" style={bad("phone")} /></div>
-              <div style={{ display: "flex", gap: 12 }}>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("nationality") ? { color: "var(--magenta)" } : null}>{L.nat}</label><input value={form.nationality} onChange={(e) => setF("nationality", e.target.value)} style={bad("nationality")} /></div>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("years") ? { color: "var(--magenta)" } : null}>{L.years}</label><input value={form.years} onChange={(e) => setF("years", e.target.value)} inputMode="numeric" placeholder="5" style={bad("years")} /></div>
-              </div>
-              <div className="field">
-                <label style={invalidFields.includes("expPlace") ? { color: "var(--magenta)" } : null}>{L.expPlace}</label>
-                <input value={form.expPlace} onChange={(e) => setF("expPlace", e.target.value)} placeholder={L.expPh} style={bad("expPlace")} />
-                <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "6px 2px 0" }}>{L.expHint}</p>
-              </div>
-              <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{L.arabicLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={(form.arabic === lv ? "on" : "") + (invalidFields.includes("arabic") ? " bad-chip" : "")} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
-              <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{L.englishLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={(form.english === lv ? "on" : "") + (invalidFields.includes("english") ? " bad-chip" : "")} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
-              <div style={{ display: "flex", gap: 12 }}>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("birthYear") ? { color: "var(--magenta)" } : null}>{L.age}</label><input value={form.birthYear} onChange={(e) => setF("birthYear", e.target.value.replace(/[^0-9]/g, "").slice(0, 4))} inputMode="numeric" placeholder="1996" dir="ltr" style={bad("birthYear")} /></div>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input value={form.height} onChange={(e) => setF("height", e.target.value.replace(/[^0-9]/g, "").slice(0, 3))} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
-                <div className="field" style={{ flex: 1 }}><label style={invalidFields.includes("weight") ? { color: "var(--magenta)" } : null}>{L.weight}</label><input value={form.weight} onChange={(e) => setF("weight", e.target.value.replace(/[^0-9]/g, "").slice(0, 3))} inputMode="numeric" placeholder="60" style={bad("weight")} /></div>
-              </div>
-              <div className="field"><label style={invalidFields.includes("specs") ? { color: "var(--magenta)" } : null}>{L.spec}</label><div className="spec">{t.specs.map((sp) => <button key={sp} type="button" className={(form.specs.includes(sp) ? "on" : "") + (invalidFields.includes("specs") ? " bad-chip" : "")} onClick={() => { toggleSpec(sp); if (invalidFields.includes("specs")) setInvalidFields((a) => a.filter((x) => x !== "specs")); }}>{sp}</button>)}</div></div>
-              <div className="field"><label style={invalidFields.includes("extras") ? { color: "var(--magenta)" } : null}>{t.extraLabel}</label><div className="spec">{t.extras.map((x) => <button key={x} type="button" className={(form.extras.includes(x) ? "on" : "") + (invalidFields.includes("extras") ? " bad-chip" : "")} onClick={() => { toggleExtra(x); if (invalidFields.includes("extras")) setInvalidFields((a) => a.filter((y) => y !== "extras")); }}>{x}</button>)}</div></div>
-              <div className="field"><label style={invalidFields.includes("city") ? { color: "var(--magenta)" } : null}>{L.city}</label><select value={form.city} onChange={(e) => setF("city", e.target.value)} style={bad("city")}><option value="">{L.select}</option>{t.cities.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-              <div className="field">
-                <label style={invalidFields.includes("socials") ? { color: "var(--magenta)" } : null}>{L.socials}</label>
-                <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: "0 0 8px", lineHeight: 1.55 }}>{L.socialsHint}</p>
-                <div className="platrow">{PLATFORMS.map((p) => <button key={p} type="button" className={"platbtn" + (socialP === p ? " on" : "")} onClick={() => setSocialP(p)} aria-label={p} title={p}><PlatIcon name={p} /></button>)}</div>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                  <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130, ...(bad("socials") || {}) }} />
-                  <button type="button" className={"btn " + (socialU.trim() ? "btn-add-ready" : (form.socials.length ? "btn-add-more" : "btn-ghost"))} style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
+              {status !== "sent" && (() => {
+                const reqVals = [form.name.trim(), form.phone.trim(), form.nationality.trim(), form.years.trim(), form.arabic.trim(), form.english.trim(), form.birthYear.trim(), form.height.trim(), form.weight.trim(), form.specs.length, form.city.trim(), form.start.trim(), form.socials.length];
+                const total = reqVals.length;
+                const done = reqVals.filter(Boolean).length;
+                const left = total - done;
+                const pct = Math.round(done / total * 100);
+                const msg = done === 0 ? L.encStart : (left <= 2 ? L.encAlmost : (pct >= 45 && pct <= 65 ? L.encHalf : ""));
+                return (
+                  <div style={{ position: "sticky", top: 8, zIndex: 30, background: "rgba(255,253,251,0.96)", backdropFilter: "blur(8px)", borderRadius: 14, border: "1px solid var(--line)", padding: "10px 14px", margin: "0 0 20px", boxShadow: "0 4px 14px rgba(46,36,56,0.06)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, fontSize: 13, fontWeight: 700, color: "var(--gold-dk)" }}>
+                      <span>{L.stepOf.replace("{n}", String(step))}</span>
+                      <div style={{ display: "flex", gap: 5 }}>
+                        {[1, 2, 3].map((n) => <span key={n} style={{ width: n === step ? 20 : 8, height: 8, borderRadius: 999, background: n <= step ? "var(--gold-dk)" : "var(--line)", transition: "all .3s ease" }} />)}
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7, fontSize: 12.5, fontWeight: 600, color: left ? "var(--ink-2)" : "var(--gold-dk)" }}>
+                      <span>{left ? `${left} ${L.fieldsLeft}` : L.allDone}</span>
+                      <span dir="ltr">{done}/{total}</span>
+                    </div>
+                    <div style={{ height: 8, borderRadius: 999, background: "var(--line)", overflow: "hidden" }}>
+                      <div style={{ height: "100%", width: pct + "%", borderRadius: 999, background: "var(--gold-dk)", transition: "width .3s ease" }} />
+                    </div>
+                    {left > 0 && msg && <div style={{ fontSize: 12.5, fontWeight: 600, color: "var(--magenta)", marginTop: 7 }}>{msg}</div>}
+                  </div>
+                );
+              })()}
+              {status !== "sent" && step === 1 && (<>
+                <div className="field"><label style={invalidFields.includes("name") ? { color: "var(--magenta)" } : null}>{L.name}</label><input value={form.name} onChange={(e) => setF("name", e.target.value)} placeholder={L.name} style={bad("name")} /></div>
+                <div className="field"><label style={invalidFields.includes("phone") ? { color: "var(--magenta)" } : null}>{L.phone}</label>
+                  <div style={{ display: "flex", gap: 8 }} dir="ltr">
+                    <select value={phoneCode} onChange={(e) => setPhoneCode(e.target.value)} style={{ flex: "0 0 96px" }}>
+                      {DIAL_CODES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+                    </select>
+                    <input value={form.phone} onChange={(e) => setF("phone", e.target.value.replace(/[^0-9 ]/g, ""))} placeholder="81 234 5678" dir="ltr" inputMode="tel" style={{ flex: 1, ...(bad("phone") || {}) }} />
+                  </div>
                 </div>
-                {form.socials.length > 0 && (
-                  <div className="spec" style={{ marginTop: 10 }}>
-                    {form.socials.map((s, i) => (
-                      <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 12px", borderRadius: 999, border: "1.5px solid var(--line)", background: "var(--gold-soft)", color: "var(--gold-dk)", fontWeight: 600, fontSize: 13 }}>
-                        <PlatIcon name={s.p} s={16} /><span dir="ltr">@{s.u}</span>
-                        <button type="button" onClick={() => removeSocial(i)} aria-label="remove" style={{ display: "grid", placeItems: "center", color: "var(--coral)" }}><X size={14} /></button>
-                      </span>
+                <div className="field"><label style={invalidFields.includes("nationality") ? { color: "var(--magenta)" } : null}>{L.nat}</label><select value={form.nationality} onChange={(e) => setF("nationality", e.target.value)} style={bad("nationality")}>{L.nats.map((n) => <option key={n} value={n}>{n}</option>)}</select></div>
+                <div className="field"><label style={invalidFields.includes("city") ? { color: "var(--magenta)" } : null}>{L.city}</label><select value={form.city} onChange={(e) => setF("city", e.target.value)} style={bad("city")}><option value="">{L.select}</option>{t.cities.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
+                <div className="field"><label style={invalidFields.includes("start") ? { color: "var(--magenta)" } : null}>{L.startLabel}</label><div className="spec">{L.startOpts.map((o) => <button key={o} type="button" className={(form.start === o ? "on" : "") + (invalidFields.includes("start") ? " bad-chip" : "")} onClick={() => setF("start", o)}>{o}</button>)}</div></div>
+              </>)}
+
+              {status !== "sent" && step === 2 && (<>
+                <div className="field"><label style={invalidFields.includes("years") ? { color: "var(--magenta)" } : null}>{L.years}</label><input value={form.years} onChange={(e) => setF("years", e.target.value)} inputMode="numeric" placeholder="5" style={bad("years")} /></div>
+                <div className="field">
+                  <label style={invalidFields.includes("expPlace") ? { color: "var(--magenta)" } : null}>{L.expPlace}</label>
+                  <input value={form.expPlace} onChange={(e) => setF("expPlace", e.target.value)} placeholder={L.expPh} style={bad("expPlace")} />
+                  <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "6px 2px 0" }}>{L.expHint}</p>
+                </div>
+                <div className="field"><label style={invalidFields.includes("arabic") ? { color: "var(--magenta)" } : null}>{L.arabicLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={(form.arabic === lv ? "on" : "") + (invalidFields.includes("arabic") ? " bad-chip" : "")} onClick={() => setF("arabic", lv)}>{lv}</button>)}</div></div>
+                <div className="field"><label style={invalidFields.includes("english") ? { color: "var(--magenta)" } : null}>{L.englishLabel}</label><div className="spec">{L.arabicLevels.map((lv) => <button key={lv} type="button" className={(form.english === lv ? "on" : "") + (invalidFields.includes("english") ? " bad-chip" : "")} onClick={() => setF("english", lv)}>{lv}</button>)}</div></div>
+                <div className="field"><label style={invalidFields.includes("specs") ? { color: "var(--magenta)" } : null}>{L.spec}</label><div className="spec">{t.specs.map((sp) => <button key={sp} type="button" className={(form.specs.includes(sp) ? "on" : "") + (invalidFields.includes("specs") ? " bad-chip" : "")} onClick={() => { toggleSpec(sp); if (invalidFields.includes("specs")) setInvalidFields((a) => a.filter((x) => x !== "specs")); }}>{sp}</button>)}</div></div>
+                <div className="field"><label>{t.extraLabel}</label><div className="spec">{t.extras.map((x) => <button key={x} type="button" className={form.extras.includes(x) ? "on" : ""} onClick={() => toggleExtra(x)}>{x}</button>)}</div></div>
+              </>)}
+
+              {status !== "sent" && step === 3 && (<>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <div className="field" style={{ flex: 1, minWidth: 90 }}><label style={invalidFields.includes("birthYear") ? { color: "var(--magenta)" } : null}>{L.age}</label><input id="f-birthYear" value={form.birthYear} onChange={(e) => { const v = e.target.value.replace(/[^0-9]/g, "").slice(0, 4); setF("birthYear", v); if (v.length === 4) { const n = document.getElementById("f-height"); if (n) n.focus(); } }} inputMode="numeric" placeholder="1996" dir="ltr" style={bad("birthYear")} /></div>
+                  <div className="field" style={{ flex: 1, minWidth: 90 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input id="f-height" value={form.height} onChange={(e) => { const v = e.target.value.replace(/[^0-9]/g, "").slice(0, 3); setF("height", v); if (v.length === 3) { const n = document.getElementById("f-weight"); if (n) n.focus(); } }} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
+                  <div className="field" style={{ flex: 1, minWidth: 90 }}><label style={invalidFields.includes("weight") ? { color: "var(--magenta)" } : null}>{L.weight}</label><input id="f-weight" value={form.weight} onChange={(e) => setF("weight", e.target.value.replace(/[^0-9]/g, "").slice(0, 3))} inputMode="numeric" placeholder="60" style={bad("weight")} /></div>
+                </div>
+                <div className="field">
+                  <label style={invalidFields.includes("socials") ? { color: "var(--magenta)" } : null}>{L.socials}</label>
+                  <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: "0 0 8px", lineHeight: 1.55 }}>{L.socialsHint}</p>
+                  <div className="platrow">{PLATFORMS.map((p) => <button key={p} type="button" className={"platbtn" + (socialP === p ? " on" : "")} onClick={() => setSocialP(p)} aria-label={p} title={p}><PlatIcon name={p} /></button>)}</div>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
+                    <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130, ...(bad("socials") || {}) }} />
+                    <button type="button" className={"btn " + (socialU.trim() ? "btn-add-ready" : (form.socials.length ? "btn-add-more" : "btn-ghost"))} style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
+                  </div>
+                  {form.socials.length > 0 && (
+                    <div className="spec" style={{ marginTop: 10 }}>
+                      {form.socials.map((s, i) => (
+                        <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 12px", borderRadius: 999, border: "1.5px solid var(--line)", background: "var(--gold-soft)", color: "var(--gold-dk)", fontWeight: 600, fontSize: 13 }}>
+                          <PlatIcon name={s.p} s={16} /><span dir="ltr">@{s.u}</span>
+                          <button type="button" onClick={() => removeSocial(i)} aria-label="remove" style={{ display: "grid", placeItems: "center", color: "var(--coral)" }}><X size={14} /></button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="field"><label>{L.msg}</label><textarea rows={3} value={form.message} onChange={(e) => set("message", e.target.value)} /></div>
+                <div className="field">
+                  <label>{L.certsLabel}</label>
+                  <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+                    {form.certs.length < MAX_CERTS && (
+                      <label className="btn btn-ghost" style={{ padding: "11px 18px", cursor: "pointer" }}><FileText size={17} /> {L.certsBtn}<input type="file" accept=".pdf,image/*,application/pdf" multiple onChange={onCert} style={{ display: "none" }} /></label>
+                    )}
+                    {form.certs.map((cf, i) => (
+                      <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 10px 7px 12px", borderRadius: 999, background: "var(--gold-soft)", border: "1px solid var(--gold)", maxWidth: 180 }}>
+                        <FileText size={14} style={{ color: "var(--gold-dk)", flexShrink: 0 }} />
+                        <span style={{ fontSize: 12.5, color: "var(--gold-dk)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} dir="ltr">{cf.name}</span>
+                        <button type="button" onClick={() => removeCert(i)} aria-label="remove" style={{ width: 18, height: 18, borderRadius: "50%", display: "grid", placeItems: "center", border: "none", background: "transparent", color: "var(--coral)", flexShrink: 0 }}><X size={13} /></button>
+                      </div>
                     ))}
                   </div>
-                )}
-              </div>
-              <div className="field"><label>{L.msg}</label><textarea rows={3} value={form.message} onChange={(e) => set("message", e.target.value)} /></div>
-              <div className="field">
-                <label>{L.certsLabel}</label>
-                <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-                  {form.certs.length < MAX_CERTS && (
-                    <label className="btn btn-ghost" style={{ padding: "11px 18px", cursor: "pointer" }}><FileText size={17} /> {L.certsBtn}<input type="file" accept=".pdf,image/*,application/pdf" multiple onChange={onCert} style={{ display: "none" }} /></label>
-                  )}
-                  {form.certs.map((cf, i) => (
-                    <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 10px 7px 12px", borderRadius: 999, background: "var(--gold-soft)", border: "1px solid var(--gold)", maxWidth: 180 }}>
-                      <FileText size={14} style={{ color: "var(--gold-dk)", flexShrink: 0 }} />
-                      <span style={{ fontSize: 12.5, color: "var(--gold-dk)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} dir="ltr">{cf.name}</span>
-                      <button type="button" onClick={() => removeCert(i)} aria-label="remove" style={{ width: 18, height: 18, borderRadius: "50%", display: "grid", placeItems: "center", border: "none", background: "transparent", color: "var(--coral)", flexShrink: 0 }}><X size={13} /></button>
-                    </div>
-                  ))}
+                  <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.certsHint}</p>
                 </div>
-                <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.certsHint}</p>
-              </div>
-              <div className="field">
-                <label>{L.photo}</label>
-                <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-                  {form.photos.length < MAX_PHOTOS && (
-                    <label className="btn btn-ghost" style={{ padding: "11px 18px", cursor: "pointer" }}><Camera size={17} /> {L.choose}<input type="file" accept="image/*" multiple onChange={onPhoto} style={{ display: "none" }} /></label>
-                  )}
-                  {form.photos.map((src, i) => (
-                    <div key={i} style={{ position: "relative" }}>
-                      <img src={src} alt={"photo " + (i + 1)} style={{ width: 56, height: 56, borderRadius: 12, objectFit: "cover", border: "1px solid var(--line)" }} />
-                      <button type="button" onClick={() => removePhoto(i)} aria-label="remove" style={{ position: "absolute", insetBlockStart: -7, insetInlineEnd: -7, width: 22, height: 22, borderRadius: "50%", display: "grid", placeItems: "center", border: "1px solid var(--line)", background: "#fff", color: "var(--coral)", boxShadow: "0 2px 6px rgba(0,0,0,.15)" }}><X size={13} /></button>
-                    </div>
-                  ))}
+                <div className="field">
+                  <label>{L.photo}</label>
+                  <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+                    {form.photos.length < MAX_PHOTOS && (
+                      <label className="btn btn-ghost" style={{ padding: "11px 18px", cursor: "pointer" }}><Camera size={17} /> {L.choose}<input type="file" accept="image/*" multiple onChange={onPhoto} style={{ display: "none" }} /></label>
+                    )}
+                    {form.photos.map((src, i) => (
+                      <div key={i} style={{ position: "relative" }}>
+                        <img src={src} alt={"photo " + (i + 1)} style={{ width: 56, height: 56, borderRadius: 12, objectFit: "cover", border: "1px solid var(--line)" }} />
+                        <button type="button" onClick={() => removePhoto(i)} aria-label="remove" style={{ position: "absolute", insetBlockStart: -7, insetInlineEnd: -7, width: 22, height: 22, borderRadius: "50%", display: "grid", placeItems: "center", border: "1px solid var(--line)", background: "#fff", color: "var(--coral)", boxShadow: "0 2px 6px rgba(0,0,0,.15)" }}><X size={13} /></button>
+                      </div>
+                    ))}
+                  </div>
+                  <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.photoHint}</p>
                 </div>
-                <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.photoHint}</p>
-              </div>
+              </>)}
               {status === "sent" ? (
                 <div style={{ textAlign: "center", padding: "16px 0 4px" }}>
-                  <div style={{ width: 62, height: 62, borderRadius: "50%", margin: "0 auto 12px", display: "grid", placeItems: "center", color: "#fff", background: "linear-gradient(135deg,var(--gold-lt),var(--gold-dk))" }}><Check size={28} strokeWidth={3} /></div>
+                  <div style={{ width: 62, height: 62, borderRadius: "50%", margin: "0 auto 12px", display: "grid", placeItems: "center", color: "#fff", background: "var(--gold-dk)" }}><Check size={28} strokeWidth={3} /></div>
                   <h3 style={{ fontSize: 19 }}>{L.sentT}</h3>
                   <p style={{ color: "var(--ink-2)", fontSize: 14, margin: "6px 0 10px" }}>{L.sentD}</p>
                   <div style={{ background: "#E7F8EE", border: "1px solid rgba(31,175,85,.25)", borderRadius: 14, padding: "12px 16px", margin: "0 auto 16px", maxWidth: 440 }}>
                     <p style={{ color: "#137a3c", fontSize: 13.5, margin: 0, lineHeight: 1.6 }}>{L.waRefNote}</p>
                   </div>
                   <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-                    <a className="btn btn-wa" style={{ color: "#fff", background: "linear-gradient(135deg,#25d366,#1faf55)" }} href={waHref} target="_blank" rel="noreferrer"><MessageCircle size={17} /> {t.waBtn}</a>
-                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", message: "", specs: [], extras: [], socials: [], photos: [] }); setStatus("idle"); }}>{L.another}</button>
+                    <a className="btn btn-wa" style={{ color: "#fff", background: "#0C9A63", boxShadow: "0 12px 26px -12px rgba(12,154,99,.5)" }} href={waHref} target="_blank" rel="noreferrer"><MessageCircle size={17} /> {t.waBtn}</a>
+                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", start: "", message: "", specs: [], extras: [], socials: [], photos: [], certs: [] }); setStatus("idle"); setStep(1); const nid = genId(); setLeadId(nid); try { localStorage.setItem("sabai_lead_id", nid); localStorage.removeItem("sabai_draft_v1"); } catch (e) {} }}>{L.another}</button>
                     <button type="button" className="btn btn-ghost" onClick={share}><Share2 size={16} /> {t.share}</button>
                   </div>
                 </div>
               ) : (
                 <>
-                  {(() => {
-                    const reqVals = [form.name.trim(), form.phone.trim(), form.nationality.trim(), form.years.trim(), form.arabic.trim(), form.english.trim(), form.birthYear.trim(), form.height.trim(), form.weight.trim(), form.specs.length, form.extras.length, form.city.trim(), form.socials.length];
-                    const total = reqVals.length;
-                    const done = reqVals.filter(Boolean).length;
-                    const left = total - done;
-                    const pct = Math.round(done / total * 100);
-                    return (
-                      <div style={{ margin: "0 0 14px" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, fontSize: 13, fontWeight: 700, color: left ? "var(--ink-2)" : "var(--gold-dk)" }}>
-                          <span>{left ? `${left} ${L.fieldsLeft}` : L.allDone}</span>
-                          <span dir="ltr">{done}/{total}</span>
-                        </div>
-                        <div style={{ height: 8, borderRadius: 999, background: "var(--line)", overflow: "hidden" }}>
-                          <div style={{ height: "100%", width: pct + "%", borderRadius: 999, background: "linear-gradient(90deg,var(--gold-lt),var(--gold-dk))", transition: "width .3s ease" }} />
-                        </div>
-                      </div>
-                    );
-                  })()}
-                  <p className="encourage-note" style={{ fontSize: 13.5, color: "var(--gold-dk)", background: "var(--gold-soft)", border: "1px solid var(--gold)", borderRadius: 12, padding: "12px 14px", margin: "0 0 14px", lineHeight: 1.6 }}>{L.encourage}</p>
-                  <button type="button" className="btn btn-wa" style={{ width: "100%", color: "#fff", background: "linear-gradient(135deg,#25d366,#1faf55)", opacity: status === "sending" ? .8 : 1, pointerEvents: status === "sending" ? "none" : "auto" }} onClick={submit}>
-                    {status === "sending" ? <><span className="spin" /> {L.sending}</> : <><Send size={17} /> {SHEET_ENDPOINT ? L.submit : L.waSend}</>}
-                  </button>
-                  {(status === "invalid" || (!formValid && status === "error")) && <p style={{ fontSize: 12.5, color: "var(--coral)", margin: "10px 0 0", textAlign: "center" }}>{L.req}</p>}
+                  {step === 3 && <p className="encourage-note" style={{ fontSize: 13.5, color: "var(--gold-dk)", background: "var(--gold-soft)", border: "1px solid var(--gold)", borderRadius: 12, padding: "12px 14px", margin: "0 0 14px", lineHeight: 1.6 }}>{L.encourage}</p>}
+                  <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                    {step > 1 && <button type="button" className="btn btn-ghost" style={{ flex: "0 0 auto", padding: "13px 22px" }} onClick={goBack}>{L.back}</button>}
+                    {step < 3 ? (
+                      <button type="button" className="btn" style={{ flex: 1, color: "#fff", background: "#0C9A63", boxShadow: "0 12px 26px -12px rgba(12,154,99,.5)" }} onClick={goNext}>{L.next} →</button>
+                    ) : (
+                      <button type="button" className="btn btn-wa" style={{ flex: 1, color: "#fff", background: "#0C9A63", boxShadow: "0 12px 26px -12px rgba(12,154,99,.5)", opacity: status === "sending" ? .8 : 1, pointerEvents: status === "sending" ? "none" : "auto" }} onClick={submit}>
+                        {status === "sending" ? <><span className="spin" /> {L.sending}</> : <><Send size={17} /> {SHEET_ENDPOINT ? L.submit : L.waSend}</>}
+                      </button>
+                    )}
+                  </div>
+                  {status === "invalid" && <p style={{ fontSize: 12.5, color: "var(--coral)", margin: "10px 0 0", textAlign: "center" }}>{L.req}</p>}
                 </>
               )}
             </div>
@@ -751,7 +835,7 @@ export default function App() {
             <Fil />
             <h2 className="title" style={{ marginTop: 16 }}>{t.ctaTitle}</h2>
             <p className="lede" style={{ margin: "10px auto 0", maxWidth: 520 }}>{t.ctaSub}</p>
-            <a className="btn btn-gold" style={{ marginTop: 22 }} href="#apply">{t.applyNow}</a>
+            <a className="btn btn-gold" style={{ marginTop: 22, color: "#fff" }} href="#apply">{t.applyNow}</a>
           </div>
         </div>
       </section>
