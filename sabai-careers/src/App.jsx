@@ -761,7 +761,7 @@ export default function App() {
                 </div>
               ) : (
                 <>
-                  {step === 3 && <p className="encourage-note" style={{ fontSize: 13.5, color: "var(--gold-dk)", background: "var(--gold-soft)", border: "1px solid var(--gold)", borderRadius: 12, padding: "12px 14px", margin: "0 0 14px", lineHeight: 1.6 }}>{L.encourage}</p>}
+                  {step === 3 && null}
                   <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
                     {step > 1 && <button type="button" className="btn btn-ghost" style={{ flex: "0 0 auto", padding: "13px 22px" }} onClick={goBack}>{L.back}</button>}
                     {step < 3 ? (
