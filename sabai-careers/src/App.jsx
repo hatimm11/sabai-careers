@@ -358,7 +358,7 @@ export default function App() {
   const [lang, setLang] = useState(detectLang);
   const t = T[lang];
   const ar = lang === "ar";
-  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", start: "", message: "", specs: [], extras: [], socials: [], photos: [], certs: [] });
+  const [form, setForm] = useState({ name: "", phone: "", nationality: "Thailand", years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", start: "", message: "", specs: [], extras: [], certs: [] });
   const [status, setStatus] = useState("idle");
   const [invalidFields, setInvalidFields] = useState([]);
   const [socialP, setSocialP] = useState("Instagram");
@@ -374,19 +374,17 @@ export default function App() {
     name: form.name, phone: (phoneCode + " " + form.phone).trim(),
     phoneWa: (phoneCode.replace(/[^0-9]/g, "") + form.phone.replace(/[^0-9]/g, "").replace(/^0+/, "")),
     nationality: form.nationality,
-    age: (function () { var y = parseInt(form.birthYear, 10); var c = new Date().getFullYear(); return (y > 1900 && y <= c) ? String(c - y) : ""; })(),
-    birthYear: form.birthYear, height: form.height, weight: form.weight,
     years: form.years, expPlace: form.expPlace, arabic: form.arabic, english: form.english,
     specs: form.specs, extras: form.extras, city: form.city, start: form.start,
-    socials: form.socials, message: form.message,
-    photos: stage === "final" ? form.photos : [], certs: stage === "final" ? form.certs : [],
+    message: form.message,
+    certs: stage === "final" ? form.certs : [],
     lang
   });
   const sendData = (stage) => {
     if (!SHEET_ENDPOINT) return Promise.resolve();
     return fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: buildBody(stage) });
   };
-  const STEP_REQUIRED = { 1: ["name", "phone", "nationality", "city", "start"], 2: ["years", "arabic", "english", "specs"], 3: ["birthYear", "height", "weight", "socials"] };
+  const STEP_REQUIRED = { 1: ["name", "phone", "nationality", "city", "start"], 2: ["years", "arabic", "english", "specs"], 3: [] };
   const stepMissing = (n) => STEP_REQUIRED[n].filter((k) => {
     const v = form[k];
     return Array.isArray(v) ? v.length === 0 : !String(v || "").trim();
@@ -463,7 +461,7 @@ export default function App() {
     // iOS/HEIC images often report an empty MIME type — accept those too
     const files = picked.filter((f) => !f.type || f.type.startsWith("image/"));
     if (!files.length) { input.value = ""; return; }
-    const room = MAX_PHOTOS - form.photos.length;
+    const room = 0;
     const out = [];
     for (const file of files.slice(0, Math.max(0, room))) {
       try { const v = await compress(file); if (v) out.push(v); } catch (err) { /* skip a bad file */ }
@@ -503,16 +501,14 @@ export default function App() {
   const buildMsg = () => {
     const lines = [L.intro, "",
       `${L.name}: ${form.name || "-"}`, `${L.phone}: ${form.phone ? (phoneCode + " " + form.phone) : "-"}`, `${L.nat}: ${form.nationality || "-"}`,
-      `${L.age}: ${form.birthYear || "-"}`, `${L.height}: ${form.height || "-"}`, `${L.weight}: ${form.weight || "-"}`,
       `${L.years}: ${form.years || "-"}`, `${L.expPlace}: ${form.expPlace || "-"}`, `${L.arabicLabel}: ${form.arabic || "-"}`, `${L.englishLabel}: ${form.english || "-"}`, `${L.spec}: ${form.specs.join(", ") || "-"}`, `${t.extraLabel}: ${form.extras.join(", ") || "-"}`, `${L.city}: ${form.city || "-"}`, `${L.startLabel}: ${form.start || "-"}`,
-      `${L.socials}: ${form.socials.map((s) => `${s.p}: ${s.u}`).join(" · ") || "-"}`];
+      ];
     if (form.message) lines.push(`${L.msg}: ${form.message}`);
-    if (form.photos.length) lines.push(L.photoAttached + (form.photos.length > 1 ? " (" + form.photos.length + ")" : ""));
     return encodeURIComponent(lines.join("\n"));
   };
   const waHref = `https://wa.me/${WA_NUMBER}?text=${buildMsg()}`;
   const waPlain = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(L.intro)}`;
-  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.arabic.trim() && form.english.trim() && form.birthYear.trim() && form.height.trim() && form.weight.trim() && form.specs.length && form.city.trim() && form.socials.length;
+  const formValid = form.name.trim() && form.phone.trim() && form.nationality.trim() && form.years.trim() && form.arabic.trim() && form.english.trim() && form.specs.length && form.city.trim() && form.start.trim();
   const submit = async () => {
     if (status === "sending") return;
     const missing = [];
@@ -522,13 +518,9 @@ export default function App() {
     if (!form.years.trim()) missing.push("years");
     if (!form.arabic.trim()) missing.push("arabic");
     if (!form.english.trim()) missing.push("english");
-    if (!form.birthYear.trim()) missing.push("birthYear");
-    if (!form.height.trim()) missing.push("height");
-    if (!form.weight.trim()) missing.push("weight");
     if (!form.specs.length) missing.push("specs");
         if (!form.city.trim()) missing.push("city");
     if (!form.start.trim()) missing.push("start");
-    if (!form.socials.length) missing.push("socials");
     if (missing.length) { setInvalidFields(missing); setStatus("invalid"); return; }
     setInvalidFields([]);
     if (!SHEET_ENDPOINT) { window.open(waHref, "_blank"); setStatus("sent"); return; }
@@ -681,7 +673,7 @@ export default function App() {
           <div className="apply">
             <div className="card form reveal">
               {status !== "sent" && (() => {
-                const reqVals = [form.name.trim(), form.phone.trim(), form.nationality.trim(), form.years.trim(), form.arabic.trim(), form.english.trim(), form.birthYear.trim(), form.height.trim(), form.weight.trim(), form.specs.length, form.city.trim(), form.start.trim(), form.socials.length];
+                const reqVals = [form.name.trim(), form.phone.trim(), form.nationality.trim(), form.years.trim(), form.arabic.trim(), form.english.trim(), form.specs.length, form.city.trim(), form.start.trim()];
                 const total = reqVals.length;
                 const done = reqVals.filter(Boolean).length;
                 const left = total - done;
@@ -735,30 +727,6 @@ export default function App() {
               </>)}
 
               {status !== "sent" && step === 3 && (<>
-                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                  <div className="field" style={{ flex: 1, minWidth: 90 }}><label style={invalidFields.includes("birthYear") ? { color: "var(--magenta)" } : null}>{L.age}</label><input id="f-birthYear" value={form.birthYear} onChange={(e) => { const v = e.target.value.replace(/[^0-9]/g, "").slice(0, 4); setF("birthYear", v); if (v.length === 4) { const n = document.getElementById("f-height"); if (n) n.focus(); } }} inputMode="numeric" placeholder="1996" dir="ltr" style={bad("birthYear")} /></div>
-                  <div className="field" style={{ flex: 1, minWidth: 90 }}><label style={invalidFields.includes("height") ? { color: "var(--magenta)" } : null}>{L.height}</label><input id="f-height" value={form.height} onChange={(e) => { const v = e.target.value.replace(/[^0-9]/g, "").slice(0, 3); setF("height", v); if (v.length === 3) { const n = document.getElementById("f-weight"); if (n) n.focus(); } }} inputMode="numeric" placeholder="165" style={bad("height")} /></div>
-                  <div className="field" style={{ flex: 1, minWidth: 90 }}><label style={invalidFields.includes("weight") ? { color: "var(--magenta)" } : null}>{L.weight}</label><input id="f-weight" value={form.weight} onChange={(e) => setF("weight", e.target.value.replace(/[^0-9]/g, "").slice(0, 3))} inputMode="numeric" placeholder="60" style={bad("weight")} /></div>
-                </div>
-                <div className="field">
-                  <label style={invalidFields.includes("socials") ? { color: "var(--magenta)" } : null}>{L.socials}</label>
-                  <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: "0 0 8px", lineHeight: 1.55 }}>{L.socialsHint}</p>
-                  <div className="platrow">{PLATFORMS.map((p) => <button key={p} type="button" className={"platbtn" + (socialP === p ? " on" : "")} onClick={() => setSocialP(p)} aria-label={p} title={p}><PlatIcon name={p} /></button>)}</div>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                    <input value={socialU} onChange={(e) => setSocialU(e.target.value.replace(/[^a-zA-Z0-9._]/g, ""))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSocial(); } }} placeholder={L.username} dir="ltr" style={{ flex: 1, minWidth: 130, ...(bad("socials") || {}) }} />
-                    <button type="button" className={"btn " + (socialU.trim() ? "btn-add-ready" : (form.socials.length ? "btn-add-more" : "btn-ghost"))} style={{ padding: "11px 18px" }} onClick={addSocial}>{L.add}</button>
-                  </div>
-                  {form.socials.length > 0 && (
-                    <div className="spec" style={{ marginTop: 10 }}>
-                      {form.socials.map((s, i) => (
-                        <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 12px", borderRadius: 999, border: "1.5px solid var(--line)", background: "var(--gold-soft)", color: "var(--gold-dk)", fontWeight: 600, fontSize: 13 }}>
-                          <PlatIcon name={s.p} s={16} /><span dir="ltr">@{s.u}</span>
-                          <button type="button" onClick={() => removeSocial(i)} aria-label="remove" style={{ display: "grid", placeItems: "center", color: "var(--coral)" }}><X size={14} /></button>
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
                 <div className="field"><label>{L.msg}</label><textarea rows={3} value={form.message} onChange={(e) => set("message", e.target.value)} /></div>
                 <div className="field">
                   <label>{L.certsLabel}</label>
@@ -776,21 +744,6 @@ export default function App() {
                   </div>
                   <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.certsHint}</p>
                 </div>
-                <div className="field">
-                  <label>{L.photo}</label>
-                  <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-                    {form.photos.length < MAX_PHOTOS && (
-                      <label className="btn btn-ghost" style={{ padding: "11px 18px", cursor: "pointer" }}><Camera size={17} /> {L.choose}<input type="file" accept="image/*" multiple onChange={onPhoto} style={{ display: "none" }} /></label>
-                    )}
-                    {form.photos.map((src, i) => (
-                      <div key={i} style={{ position: "relative" }}>
-                        <img src={src} alt={"photo " + (i + 1)} style={{ width: 56, height: 56, borderRadius: 12, objectFit: "cover", border: "1px solid var(--line)" }} />
-                        <button type="button" onClick={() => removePhoto(i)} aria-label="remove" style={{ position: "absolute", insetBlockStart: -7, insetInlineEnd: -7, width: 22, height: 22, borderRadius: "50%", display: "grid", placeItems: "center", border: "1px solid var(--line)", background: "#fff", color: "var(--coral)", boxShadow: "0 2px 6px rgba(0,0,0,.15)" }}><X size={13} /></button>
-                      </div>
-                    ))}
-                  </div>
-                  <p style={{ fontSize: 12, color: "var(--ink-2)", margin: "8px 0 0" }}>{L.photoHint}</p>
-                </div>
               </>)}
               {status === "sent" ? (
                 <div style={{ textAlign: "center", padding: "16px 0 4px" }}>
@@ -802,7 +755,7 @@ export default function App() {
                   </div>
                   <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
                     <a className="btn btn-wa" style={{ color: "#fff", background: "#0C9A63", boxShadow: "0 12px 26px -12px rgba(12,154,99,.5)" }} href={waHref} target="_blank" rel="noreferrer"><MessageCircle size={17} /> {t.waBtn}</a>
-                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", start: "", message: "", specs: [], extras: [], socials: [], photos: [], certs: [] }); setStatus("idle"); setStep(1); const nid = genId(); setLeadId(nid); try { localStorage.setItem("sabai_lead_id", nid); localStorage.removeItem("sabai_draft_v1"); } catch (e) {} }}>{L.another}</button>
+                    <button type="button" className="btn btn-ghost" onClick={() => { setForm({ name: "", phone: "", nationality: L.nationality0, years: "", expPlace: "", arabic: "", english: "", birthYear: "", height: "", weight: "", city: "", start: "", message: "", specs: [], extras: [], certs: [] }); setStatus("idle"); setStep(1); const nid = genId(); setLeadId(nid); try { localStorage.setItem("sabai_lead_id", nid); localStorage.removeItem("sabai_draft_v1"); } catch (e) {} }}>{L.another}</button>
                     <button type="button" className="btn btn-ghost" onClick={share}><Share2 size={16} /> {t.share}</button>
                   </div>
                 </div>
